@@ -1,15 +1,30 @@
 package com.chokus.konye.packmyload
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import kotlinx.android.synthetic.main.activity_get_started.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pick_pmltype)
+        setContentView(R.layout.activity_sign_up)
         setFullScreen()
+        viewActions()
+    }
+
+    private fun viewActions(){
+        sign_up_button.setOnClickListener{
+            val intent = Intent(applicationContext, SignInActivity:: class.java)
+            startActivity(intent)
+        }
+        sign_in_textView.setOnClickListener {
+            val intent = Intent(applicationContext, SignInActivity:: class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setFullScreen() {

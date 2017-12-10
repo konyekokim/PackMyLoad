@@ -16,20 +16,31 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <data android:scheme="chokus"
-                    android:host="konye" />
-                <!-- note that the leading "/" is required for pathPrefix-->
-                <!-- Accepts URIs that begin with "example://gizmos”
-                <data android:scheme="example"
-                      android:host="gizmos" />-->
-                    </intent-filter>
-                </activity>
-                <activity android:name=".GetStartedActivity" />
-                <activity android:name=".SignUpActivity" />
-                <activity android:name=".SignInActivity"/>
-            </application>
 
-        </manifest>
+                <data
+                    android:host="konye"
+                    android:scheme="chokus" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+                <!--
+                Accepts URIs that begin with "example://gizmos”
+                <data android:scheme="example"
+                      android:host="gizmos" />
+                -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".GetStartedActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+    </application>
+
+</manifest>

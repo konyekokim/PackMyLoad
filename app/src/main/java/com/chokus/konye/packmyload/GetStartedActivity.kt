@@ -14,10 +14,6 @@ class GetStartedActivity : AppCompatActivity() {
         setFullScreen()
 
     }
-    private fun setFullScreen() {
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN)
-    }
     private fun viewActions(){
         get_started_button.setOnClickListener{
             val intent = Intent(applicationContext, SignUpActivity:: class.java)
@@ -27,5 +23,9 @@ class GetStartedActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, SignInActivity:: class.java)
             startActivity(intent)
         }
+    }
+    private fun setFullScreen() {
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
