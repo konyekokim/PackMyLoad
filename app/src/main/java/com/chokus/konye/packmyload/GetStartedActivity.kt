@@ -19,7 +19,7 @@ class GetStartedActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, SignUpActivity:: class.java)
             startActivity(intent)
         }
-        sign_in_button.setOnClickListener{
+        use_phone_number_button.setOnClickListener{
             val intent = Intent(applicationContext, SignInActivity:: class.java)
             startActivity(intent)
         }

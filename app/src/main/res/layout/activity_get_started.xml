@@ -31,9 +31,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign in"
+        android:text="Use Phone Number Instead"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/sign_in_button"
+        android:id="@+id/use_phone_number_button"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
