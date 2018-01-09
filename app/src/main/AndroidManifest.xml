@@ -36,11 +36,13 @@
             android:name=".GetStartedActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".FacebookLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".SignInActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:name=".PhoneNumberActivity"
+            android:label="@string/title_activity_phone_number"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        <activity android:name=".HomePageActivity" />
     </application>
 
 </manifest>

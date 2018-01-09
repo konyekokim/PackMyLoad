@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Pack My Load</string>
+    <string name="title_activity_phone_number">PhoneNumberActivity</string>
+    <string name="phone_numb">Phone Number</string>
+    <string name="phone_number_guide">We need your phone number so we can give you updates on your moves</string>
+    <string name="phone_menu_next">NEXT</string>
+    <string name="verify_code">Verify Code</string>
+    <string name="code_hint">Code</string>
+    <string name="verify_guide">You\'re receiving a text on the number you just entered with a verification code</string>
 </resources>

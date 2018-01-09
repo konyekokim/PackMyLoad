@@ -12,15 +12,16 @@ class GetStartedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_get_started)
         setFullScreen()
+        viewActions()
 
     }
     private fun viewActions(){
         login_with_fb_button.setOnClickListener{
-            val intent = Intent(applicationContext, SignUpActivity:: class.java)
+            val intent = Intent(applicationContext, FacebookLoginActivity:: class.java)
             startActivity(intent)
         }
         use_phone_number_button.setOnClickListener{
-            val intent = Intent(applicationContext, SignInActivity:: class.java)
+            val intent = Intent(applicationContext, PhoneNumberActivity:: class.java)
             startActivity(intent)
         }
     }

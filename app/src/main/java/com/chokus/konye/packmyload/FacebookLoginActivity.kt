@@ -4,25 +4,20 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import kotlinx.android.synthetic.main.activity_get_started.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_fb_login.*
 
-class SignUpActivity : AppCompatActivity() {
+class FacebookLoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(R.layout.activity_fb_login)
         setFullScreen()
-        viewActions()
+        //viewActions()
     }
 
     private fun viewActions(){
-        sign_up_button.setOnClickListener{
-            val intent = Intent(applicationContext, SignInActivity:: class.java)
-            startActivity(intent)
-        }
-        sign_in_textView.setOnClickListener {
-            val intent = Intent(applicationContext, SignInActivity:: class.java)
+        continue_button.setOnClickListener {
+            val intent : Intent = Intent(applicationContext, HomePageActivity::class.java)
             startActivity(intent)
         }
     }
