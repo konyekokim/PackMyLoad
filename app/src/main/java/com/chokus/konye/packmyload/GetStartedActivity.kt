@@ -15,11 +15,11 @@ class GetStartedActivity : AppCompatActivity() {
 
     }
     private fun viewActions(){
-        get_started_button.setOnClickListener{
+        login_with_fb_button.setOnClickListener{
             val intent = Intent(applicationContext, SignUpActivity:: class.java)
             startActivity(intent)
         }
-        sign_in_textView.setOnClickListener{
+        sign_in_button.setOnClickListener{
             val intent = Intent(applicationContext, SignInActivity:: class.java)
             startActivity(intent)
         }
