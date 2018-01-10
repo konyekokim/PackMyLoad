@@ -21,7 +21,7 @@ class GetStartedActivity : AppCompatActivity() {
             startActivity(intent)
         }
         use_phone_number_button.setOnClickListener{
-            val intent = Intent(applicationContext, PhoneNumberActivity:: class.java)
+            val intent = Intent(applicationContext, PhoneNumbersActivity:: class.java)
             startActivity(intent)
         }
     }

@@ -12,12 +12,12 @@ class FacebookLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fb_login)
         setFullScreen()
-        //viewActions()
+        viewActions()
     }
 
     private fun viewActions(){
         continue_button.setOnClickListener {
-            val intent : Intent = Intent(applicationContext, HomePageActivity::class.java)
+            val intent  = Intent(applicationContext, HomePageActivity::class.java)
             startActivity(intent)
         }
     }

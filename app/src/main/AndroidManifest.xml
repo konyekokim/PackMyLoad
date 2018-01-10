@@ -39,10 +39,9 @@
             android:name=".FacebookLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".PhoneNumberActivity"
-            android:label="@string/title_activity_phone_number"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+            android:name=".NumberVerificationActivity" />
         <activity android:name=".HomePageActivity" />
+        <activity android:name=".PhoneNumbersActivity"/>
     </application>
 
 </manifest>
