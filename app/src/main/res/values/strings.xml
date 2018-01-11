@@ -7,4 +7,5 @@
     <string name="verify_code">Verify Code</string>
     <string name="code_hint">Code</string>
     <string name="verify_guide">You\'re receiving a text on the number you just entered with a verification code</string>
+    <string name="booking_text">I want to book a</string>
 </resources>
