@@ -73,7 +73,7 @@
                     android:id="@+id/grid_view"
                     android:layout_below="@+id/booking_text_view"
                     android:numColumns="2"
-                    android:columnWidth="130dp"
+                    android:columnWidth="150dp"
                     android:layout_marginStart="18dp"
                     android:layout_marginEnd="18dp"
                     android:layout_marginTop="15dp"
