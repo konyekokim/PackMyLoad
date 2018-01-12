@@ -48,41 +48,48 @@
             android:layout_below="@+id/header_layout"
             android:id="@+id/view"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:layout_below="@+id/view">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/booking_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="14dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/booking_text_view"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/booking_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/booking_text_view"
+            android:layout_below="@+id/view"/>
                 
-                <GridView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/grid_view"
-                    android:layout_below="@+id/booking_text_view"
-                    android:numColumns="2"
-                    android:columnWidth="150dp"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="18dp"
-                    android:layout_marginTop="15dp"
-                    android:stretchMode="columnWidth"/>
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/grid_view"
+            android:layout_below="@+id/booking_text_view"
+            android:numColumns="2"
+            android:columnWidth="150dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="10dp"
+            android:stretchMode="columnWidth"/>
 
-            </RelativeLayout>
-
-        </ScrollView>
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:id="@+id/home_page_drawer_layout"
+        android:layout_gravity="start">
+
+        <ListView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/left_drawer_listView"
+            android:choiceMode="singleChoice"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"/>
+
+    </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>
