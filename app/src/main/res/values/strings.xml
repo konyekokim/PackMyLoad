@@ -12,4 +12,6 @@
     <string name="name_of_icon">Icon name</string>
     <string name="no_history">No PML plan</string>
     <string name="history_title">History</string>
+    <string name="profile_title">Profile</string>
+    <string name="profile_save_menu">SAVE</string>
 </resources>

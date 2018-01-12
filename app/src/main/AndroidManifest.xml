@@ -41,7 +41,8 @@
         <activity android:name=".NumberVerificationActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".PhoneNumbersActivity" />
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
