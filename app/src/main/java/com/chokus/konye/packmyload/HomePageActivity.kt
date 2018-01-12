@@ -33,7 +33,7 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     private fun viewActions(){
-        pml_logo.setOnClickListener {
+        user_img.setOnClickListener {
             pml_drawer_layout.openDrawer(home_page_drawer_layout)
         }
         gift_img.setOnClickListener {
