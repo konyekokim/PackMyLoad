@@ -38,10 +38,10 @@
         <activity
             android:name=".FacebookLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".NumberVerificationActivity" />
+        <activity android:name=".NumberVerificationActivity" />
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".PhoneNumbersActivity"/>
+        <activity android:name=".PhoneNumbersActivity" />
+        <activity android:name=".HistoryActivity"></activity>
     </application>
 
 </manifest>

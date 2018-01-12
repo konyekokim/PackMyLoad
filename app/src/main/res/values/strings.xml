@@ -10,4 +10,6 @@
     <string name="booking_text">I want to book a</string>
     <string name="name_of_service">Service name</string>
     <string name="name_of_icon">Icon name</string>
+    <string name="no_history">No PML plan</string>
+    <string name="history_title">History</string>
 </resources>
