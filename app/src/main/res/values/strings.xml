@@ -14,4 +14,10 @@
     <string name="history_title">History</string>
     <string name="profile_title">Profile</string>
     <string name="profile_save_menu">SAVE</string>
+    <string name="payment_title">Payment</string>
+    <string name="payment_edit_menu">EDIT</string>
+    <string name="add_card_title">Add Card</string>
+    <string name="invite_friends_title">Invite Friends</string>\
+    <string name="about_title">About</string>
+    <string name="set_pickup_title">Set Pickup</string>
 </resources>
