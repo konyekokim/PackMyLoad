@@ -43,7 +43,8 @@
         <activity android:name=".PhoneNumbersActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".AddCardActivity"></activity>
     </application>
 
 </manifest>
