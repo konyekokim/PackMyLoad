@@ -44,7 +44,8 @@
         <activity android:name=".HistoryActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".PaymentActivity" />
-        <activity android:name=".AddCardActivity"></activity>
+        <activity android:name=".AddCardActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>

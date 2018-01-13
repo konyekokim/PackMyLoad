@@ -21,4 +21,9 @@
     <string name="about_title">About</string>
     <string name="set_pickup_title">Set Pickup</string>
     <string name="enter_card_details">Please enter your card details below</string>
+    <string name="twitter_title">Twitter</string>
+    <string name="instagram_title">Instagram</string>
+    <string name="facebook_title">Facebook</string>
+    <string name="FAQ">FAQ</string>
+    <string name="terms">Terms of Use</string>
 </resources>
