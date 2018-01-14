@@ -27,4 +27,6 @@
     <string name="FAQ">FAQ</string>
     <string name="terms">Terms of Use</string>
     <string name="pml_motto">Instant Moving and Delivery</string>
+    <string name="fb_button">Login with Facebook</string>
+    <string name="phn_button">Use Phone Number Instead</string>
 </resources>
