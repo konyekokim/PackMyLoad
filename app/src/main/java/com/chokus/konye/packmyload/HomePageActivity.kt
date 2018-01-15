@@ -29,7 +29,6 @@ class HomePageActivity : AppCompatActivity() {
         viewActions()
         gridAdapter = ServiceGridAdapter(this, serviceList)
         grid_view.adapter = gridAdapter
-
         listAdapter = DrawerListAdapter(this, iconList)
         left_drawer_listView.adapter = listAdapter
     }
