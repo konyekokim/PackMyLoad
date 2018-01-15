@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chokus.konye.packmyload.AboutActivity">
+    tools:context="com.chokus.konye.packmyload.AboutActivity"
+    android:background="@color/colorLightBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,7 +13,8 @@
         android:id="@+id/social_media_layout"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/curved_white_button">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,7 +38,8 @@
                 android:layout_toEndOf="@+id/new_icon"
                 android:id="@+id/twitter_textView"
                 android:layout_marginStart="20dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:textColor="@color/colorDarkerGreyText"
+                android:textSize="20sp"/>
 
             <ImageView
                 android:layout_width="15dp"
@@ -76,7 +79,8 @@
                 android:layout_toEndOf="@+id/new_icon2"
                 android:id="@+id/facebook_textView"
                 android:layout_marginStart="20dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:textColor="@color/colorDarkerGreyText"
+                android:textSize="20sp"/>
 
             <ImageView
                 android:layout_width="15dp"
@@ -115,7 +119,8 @@
                 android:layout_toEndOf="@+id/new_icon3"
                 android:id="@+id/instagram_textView"
                 android:layout_marginStart="20dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:textColor="@color/colorDarkerGreyText"
+                android:textSize="20sp"/>
 
             <ImageView
                 android:layout_width="15dp"
@@ -133,7 +138,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_below="@+id/social_media_layout"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="25dp"
+        android:background="@drawable/curved_white_button">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -150,7 +156,8 @@
                 android:text="@string/FAQ"
                 android:id="@+id/FAQ_textView"
                 android:layout_marginStart="20dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:textColor="@color/colorDarkerGreyText"
+                android:textSize="20sp"/>
 
             <ImageView
                 android:layout_width="15dp"
@@ -182,7 +189,8 @@
                 android:text="@string/terms"
                 android:id="@+id/terms_textView"
                 android:layout_marginStart="20dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:textSize="20sp"
+                android:textColor="@color/colorDarkerGreyText"/>
 
             <ImageView
                 android:layout_width="15dp"

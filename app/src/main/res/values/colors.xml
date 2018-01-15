@@ -7,4 +7,5 @@
     <color name="colorGreyText">#E0E0E0</color>
     <color name="colorLightBackground">#F5F5F5</color>
     <color name="colorViewColor">#2e5e96</color>
+    <color name="colorDarkerGreyText">#616161</color>
 </resources>
