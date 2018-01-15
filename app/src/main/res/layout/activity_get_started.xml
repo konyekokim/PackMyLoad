@@ -62,7 +62,8 @@
                 android:textAllCaps="false"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:stateListAnimator="null"/>
 
             <Button
                 android:id="@+id/use_phone_number_button"
@@ -80,7 +81,8 @@
                 android:text="@string/phn_button"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:stateListAnimator="null"/>
 
         </RelativeLayout>
 
