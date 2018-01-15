@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chokus.konye.packmyload.AddCardActivity">
+    tools:context="com.chokus.konye.packmyload.AddCardActivity"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,7 +13,8 @@
         android:text="@string/enter_card_details"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:id="@+id/enter_detailText"/>
+        android:id="@+id/enter_detailText"
+        android:textColor="@color/colorGreyText"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +24,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="25dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:background="@drawable/curved_relative_layout">
 
         <EditText
             android:layout_width="match_parent"
@@ -31,12 +34,13 @@
             android:layout_marginEnd="20dp"
             android:id="@+id/name_editTextView"
             android:hint="Enter Name"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:textColorHint="@color/colorGreyText"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1.2dp"
-            android:background="#e0e0e0"
+            android:background="#2e5e96"
             android:id="@+id/view1"
             android:layout_below="@id/name_editTextView"
             android:layout_marginTop="20dp"/>
@@ -57,7 +61,8 @@
                 android:singleLine="true"
                 android:hint="Card Number"
                 android:id="@+id/card_number_editText"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:textColorHint="@color/colorGreyText"/>
 
             <EditText
                 android:layout_width="40dp"
@@ -65,7 +70,8 @@
                 android:maxLines="1"
                 android:hint="MM"
                 android:inputType="number"
-                android:id="@+id/month_editText"/>
+                android:id="@+id/month_editText"
+                android:textColorHint="@color/colorGreyText"/>
 
             <EditText
                 android:layout_width="30dp"
@@ -73,7 +79,8 @@
                 android:maxLines="1"
                 android:hint="YY"
                 android:inputType="number"
-                android:id="@+id/year_editText"/>
+                android:id="@+id/year_editText"
+                android:textColorHint="@color/colorGreyText"/>
 
             <EditText
                 android:layout_width="45dp"
@@ -81,14 +88,15 @@
                 android:maxLines="1"
                 android:hint="CVC"
                 android:inputType="number"
-                android:id="@+id/cvc_editText"/>
+                android:id="@+id/cvc_editText"
+                android:textColorHint="@color/colorGreyText"/>
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1.2dp"
-            android:background="#e0e0e0"
+            android:background="#2e5e96"
             android:id="@+id/view2"
             android:layout_below="@id/card_details_layout"
             android:layout_marginTop="20dp"/>
@@ -100,7 +108,8 @@
             android:layout_marginTop="20dp"
             android:hint="ZIP"
             android:id="@+id/zip_editText"
-            android:layout_below="@+id/view2"/>
+            android:layout_below="@+id/view2"
+            android:textColorHint="@color/colorGreyText"/>
 
     </RelativeLayout>
 
