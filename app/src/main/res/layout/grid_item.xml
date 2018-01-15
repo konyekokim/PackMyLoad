@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="150dp">
+    android:layout_width="160dp"
+    android:layout_height="160dp"
+    android:background="@drawable/curved_relative_layout">
 
     <ImageView
         android:layout_width="105dp"
         android:layout_height="105dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:id="@+id/service_img"/>
+        android:id="@+id/service_img" />
 
     <TextView
         android:layout_width="match_parent"
@@ -20,7 +21,9 @@
         android:id="@+id/service_name_textView"
         android:layout_below="@+id/service_img"
         android:maxLines="1"
+        android:textSize="18sp"
         android:singleLine="true"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:textColor="#ffffff"/>
 
 </RelativeLayout>

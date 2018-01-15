@@ -5,7 +5,8 @@
     android:id="@+id/pml_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chokus.konye.packmyload.HomePageActivity">
+    tools:context="com.chokus.konye.packmyload.HomePageActivity"
+    android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:id="@+id/header_layout">
+            android:id="@+id/header_layout"
+            android:background="#4282ce">
 
             <ImageView
                 android:layout_width="55dp"
@@ -57,7 +59,8 @@
             android:layout_marginTop="9dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/booking_text_view"
-            android:layout_below="@+id/view"/>
+            android:layout_below="@+id/view"
+            android:textColor="#ffffff"/>
                 
         <GridView
             android:layout_width="match_parent"

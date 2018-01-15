@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="120dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
@@ -21,64 +21,69 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pml_motto"
         android:layout_below="@+id/logo_imgView"
         android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="15dp"
-        android:textColor="@color/colorPrimary"/>
+        android:text="@string/pml_motto"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/colorPrimary" />
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="200dp"
-        android:background="@color/colorPrimary">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical">
 
-        <Button
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@drawable/pml_get_started"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <RelativeLayout
+            android:id="@+id/button_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:text="@string/fb_button"
-            android:textAllCaps="false"
-            android:id="@+id/login_with_fb_button"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:background="@drawable/curved_white_button"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:layout_above="@+id/use_phone_number_button"/>
+            android:background="@color/colorPrimary"
+            android:paddingTop="15dp">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phn_button"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/use_phone_number_button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:background="@drawable/curved_white_button"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"/>
+            <Button
+                android:id="@+id/login_with_fb_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/curved_white_button"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
+                android:text="@string/fb_button"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/use_phone_number_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_with_fb_button"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/curved_white_button"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
+                android:text="@string/phn_button"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@+id/textView"
-        android:src="@drawable/pml_get_started"
-        android:layout_marginTop="115dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
