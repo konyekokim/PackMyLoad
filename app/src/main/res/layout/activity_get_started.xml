@@ -63,7 +63,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                android:stateListAnimator="null"/>
+                android:stateListAnimator="@null"/>
 
             <Button
                 android:id="@+id/use_phone_number_button"
@@ -82,7 +82,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                android:stateListAnimator="null"/>
+                android:stateListAnimator="@null"/>
 
         </RelativeLayout>
 
