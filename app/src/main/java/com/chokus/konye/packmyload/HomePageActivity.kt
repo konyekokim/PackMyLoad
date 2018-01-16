@@ -3,16 +3,13 @@ package com.chokus.konye.packmyload
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.BaseAdapter
-import android.widget.GridView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
@@ -27,11 +24,8 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_page)
         supportActionBar!!.hide()
         viewActions()
-        gridAdapter = ServiceGridAdapter(this, serviceList)
-        grid_view.adapter = gridAdapter
-        addListContent()
-        listAdapter = DrawerListAdapter(this, iconList)
-        left_drawer_listView.adapter = listAdapter
+        gridViewActions()
+        listViewActions()
     }
 
     private fun viewActions(){
@@ -39,7 +33,64 @@ class HomePageActivity : AppCompatActivity() {
             pml_drawer_layout.openDrawer(home_page_drawer_layout)
         }
         gift_img.setOnClickListener {
-            //here pass intent to the gift activity
+            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun gridViewActions(){
+        gridAdapter = ServiceGridAdapter(this, serviceList)
+        grid_view.adapter = gridAdapter
+    }
+
+    private fun listViewActions(){
+        addListContent()
+        listAdapter = DrawerListAdapter(this, iconList)
+        left_drawer_listView.adapter = listAdapter
+        left_drawer_listView.setOnItemClickListener { adapterView, view, i, l ->
+            drawerListActions(i)
+        }
+    }
+
+    private fun drawerListActions(pos : Int){
+        if(pos == 0){
+            //history
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+        if(pos == 1){
+            //profile
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+        if(pos == 2){
+            //payment
+            val intent = Intent(this, PaymentActivity::class.java)
+            startActivity(intent)
+        }
+        if(pos==3){
+            //free pml
+            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
+        }
+        if(pos==4){
+            //become a packer
+            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
+        }
+        if(pos==5){
+            //send feedback
+            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
+        }
+        if(pos==6){
+            //review on google play
+            Toast.makeText(this,"This action will take you to play store",Toast.LENGTH_LONG).show()
+        }
+        if(pos==7){
+            //have questions
+            Toast.makeText(this,"This action will take you to play store",Toast.LENGTH_LONG).show()
+        }
+        if(pos==8){
+            //about
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -51,7 +102,7 @@ class HomePageActivity : AppCompatActivity() {
         //here perform iconList.add when you are ready
         iconList.add(ServiceClass("Your PML", R.drawable.refresh_arrow))
         iconList.add(ServiceClass("Profile", R.drawable.avatar_inside_a_circle))
-        iconList.add(ServiceClass("Payment", R.drawable.credit_card))
+        iconList.add(ServiceClass("Payment", R.drawable.credit_card_white))
         iconList.add(ServiceClass("Free PML", R.drawable.anniversary_gift_box_outline))
         iconList.add(ServiceClass("Become a Packer", R.drawable.dollar_in_circular_button))
         iconList.add(ServiceClass("Send Feedback", R.drawable.postcard_or_email_envelope_front))

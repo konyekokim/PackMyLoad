@@ -1,5 +1,6 @@
 package com.chokus.konye.packmyload
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,11 +14,13 @@ class PaymentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_payment)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.payment_title)
+        viewActions()
     }
 
     private fun viewActions(){
         add_card_relativeLayout.setOnClickListener {
-            //pass intent here to the empty add card activity to add new card
+            val intent = Intent(this, AddCardActivity::class.java)
+            startActivity(intent)
         }
     }
 
