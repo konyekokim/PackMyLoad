@@ -26,10 +26,10 @@
             android:id="@+id/twitter_relativeLayout">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:id="@+id/new_icon"
-                android:layout_marginStart="20dp"/>
+                android:src="@drawable/twitter_logo_silhouette"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,10 +42,10 @@
                 android:textSize="20sp"/>
 
             <ImageView
-                android:layout_width="15dp"
+                android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"/>
+                android:src="@drawable/arrow_point_to_right"/>
 
 
         </RelativeLayout>
@@ -67,10 +67,10 @@
             android:layout_below="@+id/twitter_relativeLayout">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:id="@+id/new_icon2"
-                android:layout_marginStart="20dp"/>
+                android:src="@drawable/facebook_logo"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,10 +83,10 @@
                 android:textSize="20sp"/>
 
             <ImageView
-                android:layout_width="15dp"
+                android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"/>
+                android:src="@drawable/arrow_point_to_right"/>
 
         </RelativeLayout>
 
@@ -107,10 +107,10 @@
             android:layout_below="@+id/facebook_relativeLayout">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:id="@+id/new_icon3"
-                android:layout_marginStart="20dp"/>
+                android:src="@drawable/instagram_symbol"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,10 +123,10 @@
                 android:textSize="20sp"/>
 
             <ImageView
-                android:layout_width="15dp"
+                android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"/>
+                android:src="@drawable/arrow_point_to_right"/>
 
         </RelativeLayout>
 
@@ -160,10 +160,10 @@
                 android:textSize="20sp"/>
 
             <ImageView
-                android:layout_width="15dp"
+                android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"/>
+                android:src="@drawable/arrow_point_to_right"/>
 
         </RelativeLayout>
 
@@ -193,10 +193,10 @@
                 android:textColor="@color/colorDarkerGreyText"/>
 
             <ImageView
-                android:layout_width="15dp"
+                android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"/>
+                android:src="@drawable/arrow_point_to_right"/>
 
         </RelativeLayout>
 
