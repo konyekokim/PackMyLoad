@@ -29,6 +29,7 @@ class HomePageActivity : AppCompatActivity() {
         viewActions()
         gridAdapter = ServiceGridAdapter(this, serviceList)
         grid_view.adapter = gridAdapter
+        addListContent()
         listAdapter = DrawerListAdapter(this, iconList)
         left_drawer_listView.adapter = listAdapter
     }
@@ -48,6 +49,15 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun addListContent(){
         //here perform iconList.add when you are ready
+        iconList.add(ServiceClass("Your PML", R.drawable.refresh_arrow))
+        iconList.add(ServiceClass("Profile", R.drawable.avatar_inside_a_circle))
+        iconList.add(ServiceClass("Payment", R.drawable.credit_card))
+        iconList.add(ServiceClass("Free PML", R.drawable.anniversary_gift_box_outline))
+        iconList.add(ServiceClass("Become a Packer", R.drawable.dollar_in_circular_button))
+        iconList.add(ServiceClass("Send Feedback", R.drawable.postcard_or_email_envelope_front))
+        iconList.add(ServiceClass("Review on Google Play", R.drawable.heart))
+        iconList.add(ServiceClass("Have Questions?", R.drawable.question_in_circular_button))
+        iconList.add(ServiceClass("About", R.drawable.information_circular_button_symbol))
     }
 
     class ServiceGridAdapter : BaseAdapter{
