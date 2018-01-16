@@ -38,14 +38,28 @@
         <activity
             android:name=".FacebookLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".NumberVerificationActivity" />
+        <activity
+            android:name=".NumberVerificationActivity"
+            android:parentActivityName=".PhoneNumbersActivity"/>
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".PhoneNumbersActivity"/>
-        <activity android:name=".HistoryActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".AddCardActivity" />
-        <activity android:name=".AboutActivity"/>
+        <activity
+            android:name=".PhoneNumbersActivity"
+            android:parentActivityName=".GetStartedActivity"/>
+        <activity
+            android:name=".HistoryActivity"
+            android:parentActivityName=".HomePageActivity"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".HomePageActivity"/>
+        <activity
+            android:name=".PaymentActivity"
+            android:parentActivityName=".HomePageActivity"/>
+        <activity
+            android:name=".AddCardActivity"
+            android:parentActivityName=".PaymentActivity"/>
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".HomePageActivity"/>
     </application>
 
 </manifest>
