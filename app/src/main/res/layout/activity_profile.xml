@@ -172,6 +172,7 @@
         android:paddingBottom="15dp"
         android:background="@drawable/curved_logout_button"
         android:layout_marginTop="15dp"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:stateListAnimator="@null"/>
 
 </RelativeLayout>
