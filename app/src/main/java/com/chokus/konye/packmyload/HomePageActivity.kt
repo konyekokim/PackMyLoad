@@ -84,7 +84,7 @@ class HomePageActivity : AppCompatActivity() {
             Toast.makeText(this,"This action will take you to play store",Toast.LENGTH_LONG).show()
         }
         if(pos==7){
-            //have questions
+            //have questions?
             Toast.makeText(this,"This action will take you to play store",Toast.LENGTH_LONG).show()
         }
         if(pos==8){
