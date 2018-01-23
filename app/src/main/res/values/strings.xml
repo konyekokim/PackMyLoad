@@ -29,4 +29,5 @@
     <string name="pml_motto">Instant Moving and Delivery</string>
     <string name="fb_button">Login with Facebook</string>
     <string name="phn_button">Use Phone Number Instead</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
