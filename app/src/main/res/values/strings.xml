@@ -30,4 +30,7 @@
     <string name="fb_button">Login with Facebook</string>
     <string name="phn_button">Use Phone Number Instead</string>
     <string name="title_activity_maps">Map</string>
+    <string name="map_activity_name">Set Pickup</string>
+    <string name="pickup_location_text">Pickup Location</string>
+    <string name="sample_location_text">Iju-Ishaga, Lagos</string>
 </resources>
