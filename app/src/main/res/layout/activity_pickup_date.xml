@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/continue_layout"
+        android:id="@+id/add_payment_method_layout"
         android:background="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true"
         android:paddingTop="14dp"
@@ -208,6 +208,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:hint="@string/promo_code_text"
+                android:id="@+id/promo_code_edit_text"
                 android:textColorHint="@color/colorGreyText"/>
 
         </RelativeLayout>
