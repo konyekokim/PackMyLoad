@@ -47,4 +47,6 @@
     <string name="add_photo_description">Add photo or description</string>
     <string name="add_photo">Add Photo</string>
     <string name="arrival_text">Arrival to Pick up between 8:00 AM - 9:00 AM</string>
+    <string name="destination">Destination</string>
+    <string name="destination_text">Maryland Mall, Lagos</string>
 </resources>
