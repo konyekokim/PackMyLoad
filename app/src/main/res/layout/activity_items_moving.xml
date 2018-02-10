@@ -35,11 +35,11 @@
     <!--add grid view for the item photos to be taken and added-->
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/about_item_editText"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/camera_icon"/>
     
     <TextView
