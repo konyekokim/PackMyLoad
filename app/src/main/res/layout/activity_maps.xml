@@ -26,14 +26,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/pickup_layout"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/map_icon_imgView"
+                android:id="@+id/map_pickup_icon_imgView"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pickup_location_text"
                 android:id="@+id/pickup_textView"
-                android:layout_toEndOf="@+id/map_icon_imgView"/>
+                android:layout_toEndOf="@+id/map_pickup_icon_imgView"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,13 +53,13 @@
                 android:text="@string/sample_location_text"
                 android:layout_below="@+id/pickup_textView"
                 android:textSize="18sp"
-                android:layout_toEndOf="@+id/map_icon_imgView"/>
+                android:layout_toEndOf="@+id/map_pickup_icon_imgView"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/right_arrow_imageView"
+                android:id="@+id/right_pickup_arrow_imageView"
                 android:src="@drawable/light_blue_right_arrowhead"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="18dp"/>
@@ -70,7 +70,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/destination_layout"
-            android:layout_below="@+id/pickup_layout">
+            android:layout_below="@+id/pickup_layout"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorViewColor">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/map_dest_icon_imgView"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dest_location_textView"
+                android:text="@string/enter_destination_text"
+                android:textSize="18sp"
+                android:layout_toEndOf="@+id/map_dest_icon_imgView"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/right_destination_arrow_imageView"
+                android:src="@drawable/light_blue_right_arrowhead"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="18dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/destination_layout"
+            android:id="@+id/continue_layout"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_button_text"
+                android:textSize="19sp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorPrimaryDark"/>
 
 
 

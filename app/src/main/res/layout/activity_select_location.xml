@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.chokus.konye.packmyload.SelectLocationActivity">
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="18dp"
+        android:id="@+id/cancel_imgView"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/cancel_imgView"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/location_hint"
+        android:layout_marginStart="18dp"
+        android:id="@+id/search_destination_editText"
+        android:background="@android:color/transparent"
+        android:textColorHint="#bdbdbd"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.3dp"
+        android:background="#bdbdbd"
+        android:layout_below="@+id/search_destination_editText"
+        android:layout_toEndOf="@+id/cancel_imgView"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="3dp"/>
+
+    <!--find out what type of widget or view we should use to show the predicted or searched areas on the  map-->
+
+</RelativeLayout>

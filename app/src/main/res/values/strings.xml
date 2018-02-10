@@ -33,4 +33,18 @@
     <string name="map_activity_name">Set Pickup</string>
     <string name="pickup_location_text">Pickup Location</string>
     <string name="sample_location_text">Iju-Ishaga, Lagos</string>
+    <string name="enter_destination_text">Enter Destination</string>
+    <string name="continue_button_text">Continue</string>
+    <string name="location_hint">Search for destination</string>
+    <string name="select_size_activity_name">Select your Size</string>
+    <string name="size_explanation">Perfect for moving your sofa, some boxes or just a few items</string>
+    <string name="price_range">N32 + N1.4 per min</string>
+    <string name="estimate_price">Estimate your price</string>
+    <string name="select_pickup_time">Select Pickup Time</string>
+    <string name="pickup_window_text">Select a pickup window</string>
+    <string name="about_item">Tell us what you are moving or share special instructions with your PML Loader</string>
+    <string name="items_moving_activity">What are You Moving?</string>
+    <string name="add_photo_description">Add photo or description</string>
+    <string name="add_photo">Add Photo</string>
+    <string name="arrival_text">Arrival to Pick up between 8:00 AM - 9:00 AM</string>
 </resources>
