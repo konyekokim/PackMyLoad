@@ -49,4 +49,7 @@
     <string name="arrival_text">Arrival to Pick up between 8:00 AM - 9:00 AM</string>
     <string name="destination">Destination</string>
     <string name="destination_text">Maryland Mall, Lagos</string>
+    <string name="add_payment">Add payment</string>
+    <string name="promo_code_text">Enter promo code here</string>
+    <string name="add_payment_method">Add Payment Method</string>
 </resources>

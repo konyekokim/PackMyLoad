@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/continue_layout"
+        android:id="@+id/add_photo_layout"
         android:background="@color/colorPrimaryDark"
         android:paddingTop="14dp"
         android:paddingBottom="14dp">
