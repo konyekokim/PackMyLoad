@@ -35,6 +35,10 @@ class HomePageActivity : AppCompatActivity() {
         gift_img.setOnClickListener {
             Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
         }
+        booking_text_view.setOnClickListener {
+            val intent = Intent(this,MapsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun gridViewActions(){
