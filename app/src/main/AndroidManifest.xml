@@ -73,11 +73,19 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:parentActivityName=".HomePageActivity" />
-        <activity android:name=".SelectYourSizeActivity" />
+        <activity
+            android:name=".SelectYourSizeActivity"
+            android:parentActivityName=".MapsActivity"/>
         <activity android:name=".SelectLocationActivity" />
-        <activity android:name=".SelectPickupTimeActivity" />
-        <activity android:name=".ItemsMovingActivity" />
-        <activity android:name=".PickupDateActivity"></activity>
+        <activity
+            android:name=".SelectPickupTimeActivity"
+            android:parentActivityName=".SelectYourSizeActivity"/>
+        <activity
+            android:name=".ItemsMovingActivity"
+            android:parentActivityName=".SelectPickupTimeActivity"/>
+        <activity
+            android:name=".PickupDateActivity"
+            android:parentActivityName=".ItemsMovingActivity"/>
     </application>
 
 </manifest>
