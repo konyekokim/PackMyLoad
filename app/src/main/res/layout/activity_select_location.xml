@@ -18,14 +18,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/cancel_imgView"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:hint="@string/location_hint"
         android:layout_marginStart="18dp"
         android:id="@+id/search_destination_editText"
         android:background="@android:color/transparent"
         android:textColorHint="#bdbdbd"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"/>
 
     <View
         android:layout_width="match_parent"
