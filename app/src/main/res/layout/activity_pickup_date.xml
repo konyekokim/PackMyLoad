@@ -57,7 +57,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:id="@+id/arrow_up_icon"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:src="@drawable/up_arrow_in_circular_button"/>
 
             <ImageView
                 android:layout_width="25dp"
@@ -65,7 +66,8 @@
                 android:id="@+id/arrow_down_icon"
                 android:layout_below="@+id/arrow_up_icon"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/down_arrow_in_circular_button"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

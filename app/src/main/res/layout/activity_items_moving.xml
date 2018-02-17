@@ -21,6 +21,7 @@
         android:id="@+id/about_item_editText"
         android:hint="@string/about_item"
         android:textColorHint="@color/colorGreyText"
+        android:textColor="@color/colorAccent"
         android:gravity="start"/>
 
     <View
@@ -35,12 +36,13 @@
     <!--add grid view for the item photos to be taken and added-->
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="33dp"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/about_item_editText"
         android:layout_marginTop="60dp"
-        android:id="@+id/camera_icon"/>
+        android:id="@+id/camera_icon"
+        android:src="@drawable/photo_camera"/>
     
     <TextView
         android:layout_width="wrap_content"
@@ -49,7 +51,7 @@
         android:text="@string/add_photo"
         android:textColor="@color/colorAccent"
         android:layout_below="@+id/camera_icon"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="1dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
