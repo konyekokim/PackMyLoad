@@ -53,4 +53,6 @@
     <string name="promo_code_text">Enter promo code here</string>
     <string name="add_payment_method">Add Payment Method</string>
     <string name="date_pickup_title_example">Wednesday, February 14</string>
+    <string name="choose_time_text">Select Time</string>
+    <string name="choose_date_text">Select Date</string>
 </resources>

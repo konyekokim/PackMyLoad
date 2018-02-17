@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/pickuptime_selection_layout"
         android:textColor="@color/colorAccent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/price_range_textView"
         android:text="@string/price_range"/>
@@ -55,7 +55,8 @@
 
         <ImageView
             android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:layout_height="20dp"
+            android:src="@drawable/info_solid_circular_button"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,9 +75,50 @@
         android:layout_centerHorizontal="true"
         android:text="@string/pickup_window_text"
         android:layout_below="@+id/estimate_layout"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"/>
 
     <!-- add the calendar and time view and widgets -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:id="@+id/choose_date_layout"
+        android:layout_above="@+id/choose_time_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/choose_date_text"
+            android:id="@+id/chosen_date_textView"
+            android:textColor="@color/colorAccent"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorViewColor"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:id="@+id/choose_time_layout"
+        android:layout_above="@+id/continue_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/choose_time_text"
+            android:id="@+id/chosen_time_textView"
+            android:textColor="@color/colorAccent"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

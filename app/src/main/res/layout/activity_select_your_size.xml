@@ -76,7 +76,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_below="@+id/price_range_textView"/>
+            android:src="@drawable/info_solid_circular_button"/>
 
         <TextView
             android:layout_width="wrap_content"
