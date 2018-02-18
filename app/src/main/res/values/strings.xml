@@ -55,4 +55,5 @@
     <string name="date_pickup_title_example">Wednesday, February 14</string>
     <string name="choose_time_text">Select Time</string>
     <string name="choose_date_text">Select Date</string>
+    <string name="time_example">8:00 AM - 9:00 AM</string>
 </resources>
