@@ -1,8 +1,13 @@
 package com.chokus.konye.packmyload
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -15,6 +20,9 @@ import kotlinx.android.synthetic.main.activity_maps.*
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    companion object {
+        val MY_PERMISSION_FINE_LOCATION = 101
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +52,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        setUpMap()
     }
 
     private fun viewActions(){
@@ -58,6 +67,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         destination_layout.setOnClickListener {
             val intent = Intent(this, SelectLocationActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun setUpMap(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mMap.isMyLocationEnabled = true
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSION_FINE_LOCATION)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode){
+            MY_PERMISSION_FINE_LOCATION -> {
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                        mMap.isMyLocationEnabled = true
+                    }else{
+                        Toast.makeText(this,"This application requires location permission",Toast.LENGTH_LONG).show()
+                        finish()
+                    }
+                }
+            }
         }
     }
 }
