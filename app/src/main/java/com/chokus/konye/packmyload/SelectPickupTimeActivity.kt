@@ -28,7 +28,6 @@ class SelectPickupTimeActivity : AppCompatActivity() {
             startActivity(intent)
         }
         choose_date_layout.setOnClickListener {
-            //calender function here
             datePickerAction()
         }
     }
