@@ -56,4 +56,27 @@
     <string name="choose_time_text">Select Time</string>
     <string name="choose_date_text">Select Date</string>
     <string name="time_example">8:00 AM - 9:00 AM</string>
+    <string name="time_1">8:00 AM - 9:00 AM</string>
+    <string name="time_2">9:00 AM - 10:00 AM</string>
+    <string name="time_3">10:00 AM - 11:00 AM</string>
+    <string name="time_4">11:00 AM - 12:00 PM</string>
+    <string name="time_5">12:00 PM - 1:00 PM</string>
+    <string name="time_6">1:00 PM - 2:00 PM</string>
+    <string name="time_7">2:00 PM - 3:00 PM</string>
+    <string name="time_8">3:00 PM - 4:00 PM</string>
+    <string name="time_9">4:00 PM - 4:00 PM</string>
+    <string name="time_10">5:00 PM - 6:00 PM</string>
+
+    <string-array name="time_list_items">
+        <item>8:00 AM - 9:00 AM</item>
+        <item>9:00 AM - 9:00 AM</item>
+        <item>10:00 AM - 9:00 AM</item>
+        <item>11:00 AM - 12:00 PM</item>
+        <item>12:00 PM - 1:00 PM</item>
+        <item>1:00 PM - 2:00 PM</item>
+        <item>2:00 PM - 3:00 PM</item>
+        <item>3:00 PM - 4:00 PM</item>
+        <item>4:00 PM - 4:00 PM</item>
+        <item>5:00 PM - 6:00 PM</item>
+    </string-array>
 </resources>
