@@ -7,6 +7,7 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -48,11 +49,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         googleMap.mapType(GoogleMap.MAP_TYPE_TERRAIN)
+        userCurrentLocation()
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.addMarker(MarkerOptions().position(sydney).title("Somewhere in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         setUpMap()
+    }
+
+    private fun userCurrentLocation(){
+        val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (permission == PackageManager.PERMISSION_GRANTED) {
+            mMap.isMyLocationEnabled = true
+        }
     }
 
     private fun viewActions(){
