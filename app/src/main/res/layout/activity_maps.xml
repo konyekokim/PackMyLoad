@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         tools:context="com.chokus.konye.packmyload.MapsActivity"
         android:layout_above="@+id/buttons_layout"
-        map:cameraZoom="17"/>
+        map:cameraZoom="19"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
