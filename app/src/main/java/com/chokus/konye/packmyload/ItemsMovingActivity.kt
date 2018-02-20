@@ -119,4 +119,13 @@ class ItemsMovingActivity : AppCompatActivity() {
         photoPickerIntent.type = "image/*"
         startActivityForResult(photoPickerIntent, MY_REQUEST_GALLERY)
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode){
+            MY_REQUEST_CAMERA -> catchPhoto()
+            MY_REQUEST_WRITE_CAMERA -> checkPermissionCamera()
+            MY_REQUEST_READ_GALLERY -> checkPermissionWG()
+            MY_REQUEST_WRITE_GALLERY -> getPhotos()
+        }
+    }
 }
