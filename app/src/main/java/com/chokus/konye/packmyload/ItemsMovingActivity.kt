@@ -2,8 +2,10 @@ package com.chokus.konye.packmyload
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
@@ -41,7 +44,7 @@ class ItemsMovingActivity : AppCompatActivity() {
 
     private fun viewActions(){
         camera_icon.setOnClickListener {
-            //remember to add dialog that asks if the want to take photo or take from gallery.
+            pickImageSourceDialog()
         }
         add_photo_layout.setOnClickListener {
             val intent = Intent(this, PickupDateActivity::class.java)
@@ -161,5 +164,20 @@ class ItemsMovingActivity : AppCompatActivity() {
             MY_REQUEST_READ_GALLERY -> checkPermissionWG()
             MY_REQUEST_WRITE_GALLERY -> getPhotos()
         }
+    }
+
+    private fun pickImageSourceDialog(){
+        val alertDialog : AlertDialog.Builder = AlertDialog.Builder(this)
+        alertDialog.setTitle("Pick Image Source")
+        alertDialog.setMessage("Where do you want to Select Item Image  from?")
+        alertDialog.setPositiveButton("Take Photo", DialogInterface.OnClickListener { dialog, which ->
+            dialog.cancel()
+            checkPermissionCWES()
+        })
+        alertDialog.setNegativeButton("Gallery", DialogInterface.OnClickListener { dialog, which ->
+            dialog.cancel()
+            checkPermissionRG()
+        })
+        alertDialog.show()
     }
 }
