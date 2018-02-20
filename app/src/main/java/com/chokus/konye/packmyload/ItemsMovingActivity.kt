@@ -13,9 +13,11 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_items_moving.*
 import java.io.File
+import java.io.FileOutputStream
 
 class ItemsMovingActivity : AppCompatActivity() {
     private var file : File? = null
@@ -44,6 +46,38 @@ class ItemsMovingActivity : AppCompatActivity() {
         add_photo_layout.setOnClickListener {
             val intent = Intent(this, PickupDateActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        //with when we select the request code we asked for in the StartActivityForResult
+        when(requestCode){
+            CAPTURE_CAMERA ->
+                    item_imgView.setImageURI(Uri.parse("file:///" + file))
+
+            MY_REQUEST_GALLERY ->
+                    getImageFromGallery(data)
+        }
+    }
+
+    private fun getImageFromGallery(data: Intent?){
+        try {
+            val inputStream = contentResolver.openInputStream(data?.data)
+            file = getFile()
+            val fileOutputStream = FileOutputStream(file)
+            val buffer = ByteArray(1024)
+            var bytesRead : Int
+            while (true){
+                bytesRead = inputStream.read(buffer)
+                if (bytesRead == -1) break
+                fileOutputStream.write(buffer, 0, bytesRead)
+            }
+            fileOutputStream.close()
+            inputStream.close()
+            item_imgView.setImageURI(Uri.parse("file:///" + file))
+        }catch (e : Exception){
+            Log.e("", "Error while creating temp file", e)
         }
     }
 
