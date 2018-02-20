@@ -1,15 +1,19 @@
 package com.chokus.konye.packmyload
 
 import android.Manifest
+import android.app.AlertDialog
 import android.app.Service
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
@@ -52,7 +56,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     }
 
     override fun onLocationChanged(location: Location?) {
-        // do stuff here
+        // update location details and animate to the current location of the user
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
@@ -127,7 +131,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         isNetwork = locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
         if(!isGPS && !isNetwork){
             Log.d("No Connection","Connection off")
-            //do some certain stuff.... remember to fill this place accordingly
+            showSettingsAlert()
+            getLastLocation()
         }else{
             Log.d("Connection Availble", "Connection on")
             //check permissions
@@ -175,6 +180,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
 
     }
 
+    private fun getLastLocation(){
+        try{
+            val criteria : Criteria = Criteria()
+            val provider : String = locationManager!!.getBestProvider(criteria,false)
+            val location : Location = locationManager!!.getLastKnownLocation(provider)
+            //here use the location gotten above to get last known location
+        }catch (e: SecurityException){
+            e.printStackTrace()
+        }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){
@@ -191,6 +207,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 }
             }
         }
+    }
+
+    private fun showSettingsAlert(){
+        val alertDialog : AlertDialog.Builder = AlertDialog.Builder(this)
+        alertDialog.setTitle("GPS is not Enabled")
+        alertDialog.setMessage("Do you want to turn on GPS?")
+        alertDialog.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            startActivity(intent)
+        })
+        alertDialog.setNegativeButton("No",DialogInterface.OnClickListener { dialog, which ->
+            dialog.cancel()
+        })
+        alertDialog.show()
     }
 
     override fun onDestroy() {
