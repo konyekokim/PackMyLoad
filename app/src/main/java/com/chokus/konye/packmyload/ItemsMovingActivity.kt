@@ -94,4 +94,29 @@ class ItemsMovingActivity : AppCompatActivity() {
         val mediaFile = File(fileDir.path + File.separator + "temp.jpg")
         return mediaFile
     }
+
+    private fun checkPermissionRG(){
+        //RG meaning read gallery
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE), MY_REQUEST_READ_GALLERY)
+        }else{
+            checkPermissionWG()
+        }
+    }
+
+    private fun checkPermissionWG(){
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_REQUEST_WRITE_GALLERY)
+        }else{
+            getPhotos()
+        }
+    }
+
+    private fun getPhotos(){
+        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+        startActivityForResult(photoPickerIntent, MY_REQUEST_GALLERY)
+    }
 }
