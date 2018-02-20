@@ -181,6 +181,14 @@ class ItemsMovingActivity : AppCompatActivity() {
             dialog.cancel()
             checkPermissionRG()
         })
-        alertDialog.show()
+        val dialog : AlertDialog = alertDialog.create()
+        dialog.show()
+
+        //get the alertDialog button references
+        val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        val negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+        //change color of button text
+        positiveButton.setTextColor(resources.getColor(R.color.colorPrimary))
+        negativeButton.setTextColor(resources.getColor(R.color.colorPrimary))
     }
 }
