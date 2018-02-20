@@ -16,6 +16,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.FileProvider
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_items_moving.*
@@ -110,8 +111,10 @@ class ItemsMovingActivity : AppCompatActivity() {
         if (file != null){
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             try{
-                val photoUri = Uri.fromFile(file)
+                //val photoUri = Uri.fromFile(file)
+                val photoUri = FileProvider.getUriForFile(this,this.applicationContext.packageName + ".my.package.name.provider", file!!)
                 intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,photoUri)
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 startActivityForResult(intent, CAPTURE_CAMERA)
             }catch (e : ActivityNotFoundException){
                 //do nothing
