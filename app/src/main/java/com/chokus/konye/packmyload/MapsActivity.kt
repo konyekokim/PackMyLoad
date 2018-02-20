@@ -23,6 +23,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
@@ -36,6 +37,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     private var isGPS : Boolean = false
     private var isNetwork : Boolean = false
     private var canGetLocation : Boolean = true
+    private var userLatitude : Double? = null
+    private var userLongitude : Double? = null
     companion object {
         val MY_PERMISSION_FINE_LOCATION = 101
         val MIN_DISTANCE_CHANGE_FOR_UPDATES = 10.toFloat()
@@ -91,6 +94,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Somewhere in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        setUpMap()
     }
 
     private fun userCurrentLocation(){
@@ -115,16 +119,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         }
     }
 
-    private fun setUpMap(){
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mMap.isMyLocationEnabled = true
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSION_FINE_LOCATION)
-            }
-        }
-    }
-
     private fun prepareLocationManager(){
         locationManager = getSystemService(Service.LOCATION_SERVICE) as LocationManager
         isGPS = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -136,9 +130,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         }else{
             Log.d("Connection Availble", "Connection on")
             //check permissions
-            setUpMap()
+            getLocation()
         }
     }
+
+    private fun setUpMap(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mMap.isMyLocationEnabled = true
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSION_FINE_LOCATION)
+            }
+        }
+    }
+
 
     private fun getLocation(){
         try {
@@ -153,6 +158,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                         location = locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                         if (location != null){
                             //get lat and long here
+                            userLatitude = location!!.latitude
+                            userLongitude = location!!.longitude
                         }
                     }
                 } else if (isNetwork) {
@@ -163,13 +170,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                     if (locationManager != null) {
                         location = locationManager!!.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
                         if (location != null){
-                            //get lat and long here
+                            userLatitude = location!!.latitude
+                            userLongitude = location!!.longitude
                         }
                     }
                 } else {
                     location!!.latitude = 0.toDouble()
                     location!!.longitude = 0.toDouble()
-                    //set Lat and Long to 0
+                    //set Lat and Long to 0...there for the userLat and userLong
                 }
             } else {
                 Log.d("fault", "Can't get location")
@@ -186,6 +194,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             val provider : String = locationManager!!.getBestProvider(criteria,false)
             val location : Location = locationManager!!.getLastKnownLocation(provider)
             //here use the location gotten above to get last known location
+            userLatitude = location.latitude
+            userLongitude = location.longitude
         }catch (e: SecurityException){
             e.printStackTrace()
         }
@@ -207,6 +217,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 }
             }
         }
+    }
+
+    private fun positionFunction(latitude : Double, longitude : Double) : LatLng{
+        return(LatLng(latitude,longitude))
+    }
+
+    private fun animatedCamera(position: LatLng, zoom: Float, bearing: Float, tilt: Float){
+        val cameraPosition = CameraPosition.Builder()
+                .target(position)
+                .zoom(zoom)
+                .bearing(bearing)
+                .tilt(tilt)
+                .build()
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
     private fun showSettingsAlert(){
