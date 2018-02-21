@@ -60,6 +60,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
 
     override fun onLocationChanged(location: Location?) {
         // update location details and animate to the current location of the user
+        userLatitude = location!!.latitude
+        userLongitude = location.longitude
+        animatedCamera(positionFunction(userLatitude!!,userLongitude!!),25f,0f,0f)
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
@@ -89,12 +92,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         googleMap.mapType(GoogleMap.MAP_TYPE_TERRAIN)
-        userCurrentLocation()
+        //userCurrentLocation()
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Somewhere in Sydney"))
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        animatedCamera(positionFunction(userLatitude!!,userLongitude!!),25f,0f,0f)
         setUpMap()
     }
 
@@ -208,7 +210,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             MY_PERMISSION_FINE_LOCATION -> {
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                        mMap.isMyLocationEnabled = true
                         canGetLocation = true
                     }else{
                         Toast.makeText(this,"This application requires location permission",Toast.LENGTH_LONG).show()
