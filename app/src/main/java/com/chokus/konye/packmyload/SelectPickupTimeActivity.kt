@@ -28,6 +28,7 @@ class SelectPickupTimeActivity : AppCompatActivity() {
     }
 
     private fun viewActions(){
+        val chosenTimeTextView =
         continue_layout.setOnClickListener {
             val intent = Intent(this, ItemsMovingActivity::class.java)
             startActivity(intent)
