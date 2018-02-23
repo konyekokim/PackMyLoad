@@ -42,6 +42,7 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     private fun gridViewActions(){
+        addGridContent()
         gridAdapter = ServiceGridAdapter(this, serviceList)
         grid_view.adapter = gridAdapter
     }
@@ -100,6 +101,10 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun addGridContent(){
         //here perform serviceList.add when you are ready
+        serviceList.add(ServiceClass("Packer Pickup", R.drawable.pml_handshake))
+        serviceList.add(ServiceClass("Store", R.drawable.pml_store))
+        serviceList.add(ServiceClass("Packer Money",R.drawable.pml_money))
+        serviceList.add(ServiceClass("Packer shield",R.drawable.pml_shield))
     }
 
     private fun addListContent(){
