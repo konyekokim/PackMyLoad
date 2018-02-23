@@ -25,7 +25,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:id="@+id/pml_logo"
-                android:src="@drawable/pmllogo"/>
+                android:src="@drawable/pml_logo"/>
 
             <ImageView
                 android:layout_width="30dp"
