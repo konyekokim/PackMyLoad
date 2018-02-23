@@ -36,6 +36,7 @@ class HomePageActivity : AppCompatActivity() {
             Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
         }
         booking_text_view.setOnClickListener {
+            //this is just a tester remember to remove it
             val intent = Intent(this,MapsActivity::class.java)
             startActivity(intent)
         }
@@ -45,6 +46,12 @@ class HomePageActivity : AppCompatActivity() {
         addGridContent()
         gridAdapter = ServiceGridAdapter(this, serviceList)
         grid_view.adapter = gridAdapter
+        grid_view.setOnItemClickListener { parent, view, position, id ->
+            //create a function like drawerListActions
+            //this one is just a temporary tester
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun listViewActions(){
