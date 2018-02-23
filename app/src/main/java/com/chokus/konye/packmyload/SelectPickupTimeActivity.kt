@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_select_pickup_time.*
 import kotlinx.android.synthetic.main.time_list_dialog.*
 import java.lang.reflect.Array
@@ -28,7 +29,6 @@ class SelectPickupTimeActivity : AppCompatActivity() {
     }
 
     private fun viewActions(){
-        val chosenTimeTextView =
         continue_layout.setOnClickListener {
             val intent = Intent(this, ItemsMovingActivity::class.java)
             startActivity(intent)
