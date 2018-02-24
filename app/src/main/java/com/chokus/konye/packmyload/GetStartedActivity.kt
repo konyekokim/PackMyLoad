@@ -48,7 +48,7 @@ class GetStartedActivity : AppCompatActivity() {
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 // App code
-                handleFacebookAccessToken(loginResult.accessToken);
+                handleFacebookAccessToken(loginResult.accessToken)
             }
             override fun onCancel() {
                 // App code
@@ -84,12 +84,12 @@ class GetStartedActivity : AppCompatActivity() {
                 }
     }
 
-    /*override fun onStart() {
+    override fun onStart() {
         super.onStart()
         //check if there is a user currently signed in.. then take action
-        val currentUser : FirebaseUser = firebaseAuth!!.currentUser!!
+        val currentUser : FirebaseUser? = firebaseAuth?.currentUser
         if(currentUser != null){
             startActivity(Intent(this,HomePageActivity::class.java))
         }
-    }*/
+    }
 }
