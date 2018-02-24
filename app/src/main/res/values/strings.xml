@@ -66,17 +66,7 @@
     <string name="time_8">3:00 PM - 4:00 PM</string>
     <string name="time_9">4:00 PM - 4:00 PM</string>
     <string name="time_10">5:00 PM - 6:00 PM</string>
+    <string name="facebook_app_id">305387516651498</string>
+    <string name="fb_login_protocol_scheme">fb305387516651498</string>
 
-    <string-array name="time_list_items">
-        <item>8:00 AM - 9:00 AM</item>
-        <item>9:00 AM - 9:00 AM</item>
-        <item>10:00 AM - 9:00 AM</item>
-        <item>11:00 AM - 12:00 PM</item>
-        <item>12:00 PM - 1:00 PM</item>
-        <item>1:00 PM - 2:00 PM</item>
-        <item>2:00 PM - 3:00 PM</item>
-        <item>3:00 PM - 4:00 PM</item>
-        <item>4:00 PM - 4:00 PM</item>
-        <item>5:00 PM - 6:00 PM</item>
-    </string-array>
 </resources>

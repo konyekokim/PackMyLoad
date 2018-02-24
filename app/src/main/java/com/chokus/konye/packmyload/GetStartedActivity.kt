@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import com.facebook.CallbackManager
 import kotlinx.android.synthetic.main.activity_get_started.*
 
 class GetStartedActivity : AppCompatActivity() {
@@ -28,5 +29,10 @@ class GetStartedActivity : AppCompatActivity() {
     private fun setFullScreen() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
+
+    private fun facebookLoginAction(){
+        val mCallbackManager = CallbackManager.Factory.create()
+
     }
 }
