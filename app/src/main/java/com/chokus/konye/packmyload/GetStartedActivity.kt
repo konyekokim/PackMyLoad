@@ -8,7 +8,7 @@ import com.facebook.CallbackManager
 import kotlinx.android.synthetic.main.activity_get_started.*
 
 class GetStartedActivity : AppCompatActivity() {
-
+    private var callbackManager : CallbackManager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_get_started)
@@ -17,10 +17,6 @@ class GetStartedActivity : AppCompatActivity() {
 
     }
     private fun viewActions(){
-        login_with_fb_button.setOnClickListener{
-            val intent = Intent(applicationContext, FacebookLoginActivity:: class.java)
-            startActivity(intent)
-        }
         use_phone_number_button.setOnClickListener{
             val intent = Intent(applicationContext, PhoneNumbersActivity:: class.java)
             startActivity(intent)
@@ -32,7 +28,6 @@ class GetStartedActivity : AppCompatActivity() {
     }
 
     private fun facebookLoginAction(){
-        val mCallbackManager = CallbackManager.Factory.create()
 
     }
 }
