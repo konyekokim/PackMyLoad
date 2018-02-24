@@ -70,7 +70,7 @@ class SelectPickupTimeActivity : AppCompatActivity() {
     }
 
     private fun timeListItems() : kotlin.Array<String>{
-        val items = arrayOf("8:00 AM - 9:00 AM", "9:00 AM - 10:OO AM", "10:00 AM - 11:00 AM", "11:00 AM - 12:00 PM",
+        val items = arrayOf("9:00 AM - 10:OO AM", "10:00 AM - 11:00 AM", "11:00 AM - 12:00 PM",
                 "12:00 PM - 1:00 PM", "1:00 PM - 2:00 PM", "2:00 PM - 3:00 PM", "3:00 PM - 4:00PM", "4:00PM - 5:00PM",
                 "5:00PM - 6:00PM")
         return items
