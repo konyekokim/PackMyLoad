@@ -121,12 +121,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         pickup_layout.setOnClickListener {
             pickupLocation = true
             loadPlacePicker()
-            pickup_location_textView.text = selectedAddress
         }
         destination_layout.setOnClickListener {
             destinationLocation = true
             loadPlacePicker()
-            dest_location_textView.text = selectedAddress
         }
     }
 
@@ -306,9 +304,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 addressText += "\n" + place.address.toString()
                 if(pickupLocation){
                     selectedAddress = addressText
+                    pickup_location_textView.text = selectedAddress
                 }
                 if(destinationLocation){
                     selectedAddress = addressText
+                    dest_location_textView.text = selectedAddress
                 }
                 placeMarkerOnMap(place.latLng.latitude, place.latLng.longitude)
             }

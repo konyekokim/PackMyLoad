@@ -70,4 +70,6 @@
     <string name="facebook_app_id">305387516651498</string>
     <string name="fb_login_protocol_scheme">fb305387516651498</string>
 
+    <string name="google_places_api_key">AIzaSyAbH_VtMcV-zkNfsjpoIA2uPqR2pkJEIaE</string>
+
 </resources>
