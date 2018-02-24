@@ -6,10 +6,7 @@ import android.app.Service
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Criteria
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
+import android.location.*
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +24,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
+import java.io.IOException
 import java.security.Provider
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
@@ -98,14 +96,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         mMap.addMarker(MarkerOptions().position(sydney).title("Somewhere in Sydney"))
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         setUpMap()
+        placeMarkerOnMap(userLatitude!!,userLongitude!!)
     }
 
-    private fun userCurrentLocation(){
+    /*private fun userCurrentLocation(){
         val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
         if (permission == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
         }
-    }
+    }*/
 
     private fun viewActions(){
         continue_layout.setOnClickListener {
@@ -249,10 +248,39 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         alertDialog.show()
     }
 
+    private fun getAddress(userLat : Double, userLong : Double) : String{
+        val geocoder = Geocoder(this)
+        val addresses : List<Address>?
+        val address : Address?
+        var addressText = ""
+
+        try{
+            addresses = geocoder.getFromLocation(userLat,userLong,1)
+            if (null != addresses && !addresses.isEmpty()) {
+                address = addresses[0]
+                for (i in 0 until address.maxAddressLineIndex) {
+                    addressText += if (i == 0) address.getAddressLine(i) else "\n" + address.getAddressLine(i)
+                }
+            }
+        }catch (e : IOException){
+            Log.e("MapsActivity", e.localizedMessage)
+        }
+        return addressText
+    }
+
+    private fun placeMarkerOnMap(userLat: Double, userLong : Double) {
+        val markerOptions = MarkerOptions().position(LatLng(userLat,userLong))
+
+        val titleStr = getAddress(userLat, userLong)  // add these two lines
+        markerOptions.title(titleStr)
+
+        mMap.addMarker(markerOptions)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         if (locationManager != null) {
-            locationManager!!.removeUpdates(this);
+            locationManager!!.removeUpdates(this)
         }
     }
 
