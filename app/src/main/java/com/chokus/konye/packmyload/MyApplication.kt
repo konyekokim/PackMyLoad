@@ -2,6 +2,8 @@ package com.chokus.konye.packmyload
 
 import android.app.Application
 import android.support.multidex.MultiDex
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.facebook.drawee.backends.pipeline.Fresco
 
 /**
@@ -13,5 +15,7 @@ class MyApplication : Application(){
         super.onCreate()
         MultiDex.install(this)
         Fresco.initialize(this)
+        FacebookSdk.sdkInitialize(applicationContext)
+        AppEventsLogger.activateApp(this)
     }
 }
