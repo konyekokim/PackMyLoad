@@ -15,6 +15,9 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.Toast
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
+import com.google.android.gms.common.GooglePlayServicesRepairableException
+import com.google.android.gms.location.places.ui.PlacePicker
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -35,12 +38,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     private var isGPS : Boolean = false
     private var isNetwork : Boolean = false
     private var canGetLocation : Boolean = true
+    private var pickupLocation : Boolean = false
+    private var destinationLocation :Boolean = false
     private var userLatitude : Double? = null
     private var userLongitude : Double? = null
+    private var selectedAddress : String? = null
     companion object {
         val MY_PERMISSION_FINE_LOCATION = 101
         val MIN_DISTANCE_CHANGE_FOR_UPDATES = 10.toFloat()
         val MIN_TIME_BETWEEN_UPDATES = 1000*60*1.toLong()
+        val PLACE_PICKER_REQUEST = 103
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,12 +119,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             startActivity(intent)
         }
         pickup_layout.setOnClickListener {
-            val intent = Intent(this, SelectLocationActivity::class.java)
-            startActivity(intent)
+            pickupLocation = true
+            loadPlacePicker()
+            pickup_location_textView.text = selectedAddress
         }
         destination_layout.setOnClickListener {
-            val intent = Intent(this, SelectLocationActivity::class.java)
-            startActivity(intent)
+            destinationLocation = true
+            loadPlacePicker()
+            dest_location_textView.text = selectedAddress
         }
     }
 
@@ -248,14 +257,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         alertDialog.show()
     }
 
-    private fun getAddress(userLat : Double, userLong : Double) : String{
+    private fun getAddress(placeLat : Double, placeLong : Double) : String{
         val geocoder = Geocoder(this)
         val addresses : List<Address>?
         val address : Address?
         var addressText = ""
 
         try{
-            addresses = geocoder.getFromLocation(userLat,userLong,1)
+            addresses = geocoder.getFromLocation(placeLat,placeLong,1)
             if (null != addresses && !addresses.isEmpty()) {
                 address = addresses[0]
                 for (i in 0 until address.maxAddressLineIndex) {
@@ -268,13 +277,42 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         return addressText
     }
 
-    private fun placeMarkerOnMap(userLat: Double, userLong : Double) {
-        val markerOptions = MarkerOptions().position(LatLng(userLat,userLong))
+    private fun placeMarkerOnMap(placeLat: Double, placeLong : Double) {
+        val markerOptions = MarkerOptions().position(LatLng(placeLat, placeLong))
 
-        val titleStr = getAddress(userLat, userLong)  // add these two lines
+        val titleStr = getAddress(placeLat, placeLong)  // add these two lines
         markerOptions.title(titleStr)
 
         mMap.addMarker(markerOptions)
+    }
+
+    private fun loadPlacePicker() {
+        val builder = PlacePicker.IntentBuilder()
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST)
+        } catch (e: GooglePlayServicesRepairableException) {
+            e.printStackTrace()
+        } catch (e: GooglePlayServicesNotAvailableException) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                val place = PlacePicker.getPlace(this, data)
+                var addressText = place.name.toString()
+                addressText += "\n" + place.address.toString()
+                if(pickupLocation){
+                    selectedAddress = addressText
+                }
+                if(destinationLocation){
+                    selectedAddress = addressText
+                }
+                placeMarkerOnMap(place.latLng.latitude, place.latLng.longitude)
+            }
+        }
     }
 
     override fun onDestroy() {

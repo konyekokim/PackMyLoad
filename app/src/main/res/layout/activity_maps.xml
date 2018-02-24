@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/location_textView"
+                android:id="@+id/pickup_location_textView"
                 android:text="@string/sample_location_text"
                 android:layout_below="@+id/pickup_textView"
                 android:textSize="18sp"
