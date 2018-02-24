@@ -12,7 +12,6 @@ class MyApplication : Application(){
     override fun onCreate() {
         super.onCreate()
         MultiDex.install(this)
-
         Fresco.initialize(this)
     }
 }
