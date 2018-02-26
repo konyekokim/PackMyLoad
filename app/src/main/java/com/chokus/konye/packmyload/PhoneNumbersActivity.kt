@@ -21,9 +21,9 @@ class PhoneNumbersActivity : AppCompatActivity() {
     var mVerificationId : String? = null
     var mCode : String? = null
     lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    val credential = PhoneAuthProvider.getCredential(mVerificationId,mCode)
     private var mAuth : FirebaseAuth? = null
     var mResendToken : PhoneAuthProvider.ForceResendingToken? = null
+    var mCredential : PhoneAuthCredential? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +62,7 @@ class PhoneNumbersActivity : AppCompatActivity() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 // verification completed
+                mCredential = credential
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
@@ -70,8 +71,10 @@ class PhoneNumbersActivity : AppCompatActivity() {
                 showToast("Verification failed")
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
+                    showToast("invalid phone number")
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
+                    showToast("Quota exceeded")
                 }
 
             }
@@ -102,10 +105,10 @@ class PhoneNumbersActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if(task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        showToast("signInWithCredential:success")                                     
+                        showToast("signInWithCredential issasuccess")
                     }else{
                         // Sign in failed, display a message and update the UI
-                        showToast("signInWithCredential:failure")
+                        showToast("signInWithCredential issafailure")
                         if (task.exception is FirebaseAuthInvalidCredentialsException) {
                             // The verification code entered was invalid
                             showToast("Invalid code was entered")
