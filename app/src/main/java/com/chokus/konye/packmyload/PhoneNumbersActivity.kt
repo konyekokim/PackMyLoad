@@ -77,6 +77,7 @@ class PhoneNumbersActivity : AppCompatActivity() {
                 // This callback is invoked if an invalid request for verification is made,
                 // for instance if the the phone number format is invalid.
                 showToast("Verification failed")
+                resendVerificationCode(userPhoneNumber,mResendToken)
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     showToast("invalid phone number")

@@ -23,8 +23,8 @@ class NumberVerificationActivity : AppCompatActivity() {
     }
 
     private fun adjustWidgets(){
-        number_textView.setHint(R.string.code_hint)
-        number_textView.inputType(InputType.TYPE_CLASS_NUMBER)
+        number_editText.setHint(R.string.code_hint)
+        number_editText.inputType(InputType.TYPE_CLASS_NUMBER)
         guide_textView.setText(R.string.verify_guide)
         //resend_code_butn.visibility(View.VISIBLE)
     }
