@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit
 
 class PhoneNumbersActivity : AppCompatActivity() {
     var mVerificationId : String? = null
-    var mCode : String? = null
     lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private var mAuth : FirebaseAuth? = null
     var mResendToken : PhoneAuthProvider.ForceResendingToken? = null
@@ -30,11 +29,13 @@ class PhoneNumbersActivity : AppCompatActivity() {
         setContentView(R.layout.activity_phone_numbers)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.phone_numb)
-        resend_code_butn.text = null
     }
 
     private fun viewActions(){
         //do stuff here
+        verify_number_butn.setOnClickListener {
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
