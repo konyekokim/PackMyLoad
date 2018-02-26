@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -23,6 +24,8 @@ class PhoneNumbersActivity : AppCompatActivity() {
     private var mAuth : FirebaseAuth? = null
     var mResendToken : PhoneAuthProvider.ForceResendingToken? = null
     var mCredential : PhoneAuthCredential? = null
+    lateinit var userPhoneNumber : String
+    var numberEditText : EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +35,11 @@ class PhoneNumbersActivity : AppCompatActivity() {
     }
 
     private fun viewActions(){
-        //do stuff here
+        numberEditText = findViewById(R.id.number_editText) as EditText
         verify_number_butn.setOnClickListener {
-
+            //do stuff here
+            userPhoneNumber = numberEditText!!.text.toString()
+            startPhoneNumberVerification(userPhoneNumber)
         }
     }
 
@@ -64,6 +69,8 @@ class PhoneNumbersActivity : AppCompatActivity() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 // verification completed
                 mCredential = credential
+                signInWithPhoneAuthCredential(mCredential!!)
+                showToast("verification completed")
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
