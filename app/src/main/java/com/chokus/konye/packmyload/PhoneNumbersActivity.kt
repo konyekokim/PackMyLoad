@@ -32,38 +32,7 @@ class PhoneNumbersActivity : AppCompatActivity() {
         setContentView(R.layout.activity_phone_numbers)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.phone_numb)
-    }
-
-    private fun viewActions(){
-        numberEditText = findViewById(R.id.number_editText) as EditText
-        verify_number_butn.setOnClickListener {
-            //do stuff here
-            userPhoneNumber = numberEditText!!.text.toString()
-            startPhoneNumberVerification(userPhoneNumber)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_phone_number,menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item!!.itemId == R.id.next){
-            val intent = Intent(applicationContext, NumberVerificationActivity::class.java)
-            startActivity(intent)
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun startPhoneNumberVerification(phoneNumber : String){
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber, //phone number to verify
-                60,
-                TimeUnit.SECONDS,
-                this,
-                mCallbacks)
-
+        viewActions()
         mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
@@ -105,6 +74,39 @@ class PhoneNumbersActivity : AppCompatActivity() {
                 super.onCodeAutoRetrievalTimeOut(verificationId)
             }
         }
+    }
+
+
+
+    private fun viewActions(){
+        numberEditText = findViewById(R.id.number_editText) as EditText
+        verify_number_butn.setOnClickListener {
+            //do stuff here
+            userPhoneNumber = numberEditText!!.text.toString()
+            startPhoneNumberVerification(userPhoneNumber)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_phone_number,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item!!.itemId == R.id.next){
+            val intent = Intent(applicationContext, NumberVerificationActivity::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun startPhoneNumberVerification(phoneNumber : String){
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNumber, //phone number to verify
+                60,
+                TimeUnit.SECONDS,
+                this,
+                mCallbacks)
     }
 
 
