@@ -94,7 +94,7 @@ class PhoneNumbersActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if(item!!.itemId == R.id.next){
-            val intent = Intent(applicationContext, NumberVerificationActivity::class.java)
+            val intent = Intent(applicationContext, HomePageActivity::class.java)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)

@@ -323,3 +323,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     }
 
 }
+
+private operator fun Int.invoke(maP_TYPE_TERRAIN: Int) {}
