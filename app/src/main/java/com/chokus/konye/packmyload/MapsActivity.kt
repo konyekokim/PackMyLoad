@@ -43,6 +43,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     private var userLatitude : Double? = null
     private var userLongitude : Double? = null
     private var selectedAddress : String? = null
+    private var userCurrentAddress : String? = null
     companion object {
         val MY_PERMISSION_FINE_LOCATION = 101
         val MIN_DISTANCE_CHANGE_FOR_UPDATES = 10.toFloat()
@@ -104,6 +105,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         setUpMap()
         placeMarkerOnMap(userLatitude!!,userLongitude!!)
+        userCurrentAddress = getAddress(userLatitude!!, userLongitude!!)
+        pickup_location_textView.text = userCurrentAddress
     }
 
     /*private fun userCurrentLocation(){
