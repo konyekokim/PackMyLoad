@@ -108,10 +108,13 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun addGridContent(){
         //here perform serviceList.add when you are ready
-        serviceList.add(ServiceClass("Packer Pickup", R.drawable.pml_handshake))
-        serviceList.add(ServiceClass("Store", R.drawable.pml_store))
-        serviceList.add(ServiceClass("Packer Money",R.drawable.pml_money))
-        serviceList.add(ServiceClass("Packer shield",R.drawable.pml_shield))
+        serviceList.add(ServiceClass("Store Delivery", R.drawable.pml_store_delivery))
+        serviceList.add(ServiceClass("Small Move", R.drawable.pml_store_move))
+        serviceList.add(ServiceClass("Packer Pickup", R.drawable.pml_packer_pickup))
+        serviceList.add(ServiceClass("Storage Move", R.drawable.pml_storage_move))
+        serviceList.add(ServiceClass("Donation Pickup", R.drawable.pml_donation_pickup))
+        serviceList.add(ServiceClass("Junk Removal", R.drawable.pml_junk_removal))
+        serviceList.add(ServiceClass("other", R.drawable.pml_other))
     }
 
     private fun addListContent(){
