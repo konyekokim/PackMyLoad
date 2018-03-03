@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.io.IOException
 import java.security.Provider
+import kotlin.properties.Delegates
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
 
@@ -61,7 +62,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.map_activity_name)
         viewActions()
-        prepareLocationManager()
+        //prepareLocationManager()
     }
 
     override fun onLocationChanged(location: Location?) {
@@ -101,11 +102,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         //userCurrentLocation()
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Somewhere in Sydney"))
+        //mMap.addMarker(MarkerOptions().position(sydney).title("Somewhere in Sydney"))
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         setUpMap()
-        placeMarkerOnMap(userLatitude!!,userLongitude!!)
-        userCurrentAddress = getAddress(userLatitude!!, userLongitude!!)
         pickup_location_textView.text = userCurrentAddress
     }
 
@@ -139,10 +138,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             Log.d("No Connection","Connection off")
             showSettingsAlert()
             getLastLocation()
+            //placeMarkerOnMap(userLatitude!!,userLongitude!!)
+            //userCurrentAddress = getAddress(userLatitude!!, userLongitude!!)
         }else{
             Log.d("Connection Availble", "Connection on")
             //check permissions
             getLocation()
+            //placeMarkerOnMap(userLatitude!!,userLongitude!!)
+            //userCurrentAddress = getAddress(userLatitude!!, userLongitude!!)
         }
     }
 
@@ -220,6 +223,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                         canGetLocation = true
+                        prepareLocationManager()
                     }else{
                         Toast.makeText(this,"This application requires location permission",Toast.LENGTH_LONG).show()
                         canGetLocation = false
