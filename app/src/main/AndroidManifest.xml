@@ -64,7 +64,8 @@
         </activity>
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -73,29 +74,33 @@
         </activity>
         <activity
             android:name=".GetStartedActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".FacebookLoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity android:name=".HomePageActivity" />
         <activity
             android:name=".PhoneNumbersActivity"
-            android:parentActivityName=".GetStartedActivity" />
+            android:parentActivityName=".GetStartedActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".HistoryActivity"
-            android:parentActivityName=".HomePageActivity" />
+            android:parentActivityName=".HomePageActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ProfileActivity"
-            android:parentActivityName=".HomePageActivity" />
+            android:parentActivityName=".HomePageActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PaymentActivity"
-            android:parentActivityName=".HomePageActivity" />
+            android:parentActivityName=".HomePageActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AddCardActivity"
-            android:parentActivityName=".PaymentActivity" />
+            android:parentActivityName=".PaymentActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AboutActivity"
-            android:parentActivityName=".HomePageActivity" />
+            android:parentActivityName=".HomePageActivity"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -111,24 +116,26 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
-            android:parentActivityName=".HomePageActivity"/>
+            android:parentActivityName=".HomePageActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".SelectLocationActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity
             android:name=".SelectYourSizeActivity"
-            android:parentActivityName=".MapsActivity"/>
+            android:parentActivityName=".MapsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SelectPickupTimeActivity"
-            android:parentActivityName=".SelectYourSizeActivity"/>
+            android:parentActivityName=".SelectYourSizeActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ItemsMovingActivity"
             android:parentActivityName=".SelectPickupTimeActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PickupDateActivity"
-            android:parentActivityName=".ItemsMovingActivity"/>
+            android:parentActivityName=".ItemsMovingActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
