@@ -50,7 +50,7 @@ class HomePageActivity : AppCompatActivity() {
             //create a function like drawerListActions
             //this one is just a temporary tester
             val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
+            //startActivity(intent)
         }
     }
 
