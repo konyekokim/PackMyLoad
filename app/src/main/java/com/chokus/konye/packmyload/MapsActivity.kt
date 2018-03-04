@@ -62,7 +62,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.map_activity_name)
         viewActions()
-        //prepareLocationManager()
+        prepareLocationManager()
     }
 
     override fun onLocationChanged(location: Location?) {
@@ -223,7 +223,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                         canGetLocation = true
-                        prepareLocationManager()
                     }else{
                         Toast.makeText(this,"This application requires location permission",Toast.LENGTH_LONG).show()
                         canGetLocation = false
