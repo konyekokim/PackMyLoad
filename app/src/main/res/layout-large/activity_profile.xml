@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chokus.konye.packmyload.ProfileActivity"
+    android:background="@color/colorLightBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_data_relative_layout"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/curved_white_button"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/firstName_relative_layout"
+            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/user_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon"
+                android:id="@+id/firstName_textView"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon"
+                android:layout_below="@+id/firstName_textView"
+                android:textSize="18sp"
+                android:inputType="textPersonName"
+                android:id="@+id/firstName_editText"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lastName_relative_layout"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_below="@+id/firstName_relative_layout">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/user_icon2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon2"
+                android:id="@+id/lastName_textView"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon2"
+                android:layout_below="@+id/lastName_textView"
+                android:textSize="18sp"
+                android:inputType="textPersonName"
+                android:id="@+id/lastName_editText"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emailAddress_relative_layout"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_below="@+id/lastName_relative_layout">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/user_icon3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email Address"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon3"
+                android:id="@+id/emailAddress_textView"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon3"
+                android:layout_below="@+id/emailAddress_textView"
+                android:textSize="18sp"
+                android:inputType="textEmailAddress"
+                android:id="@+id/emailAddress_editText"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phoneNumber_relative_layout"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_below="@+id/emailAddress_relative_layout">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/user_icon4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon4"
+                android:id="@+id/phoneNumber_textView"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/user_icon4"
+                android:layout_below="@+id/phoneNumber_textView"
+                android:textSize="18sp"
+                android:inputType="phone"
+                android:id="@+id/phoneNumber_editText"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/user_data_relative_layout"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/curved_logout_button"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorAccent"
+        android:stateListAnimator="@null"/>
+
+</RelativeLayout>
