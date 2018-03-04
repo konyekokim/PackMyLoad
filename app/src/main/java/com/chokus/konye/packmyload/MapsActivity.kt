@@ -43,7 +43,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     private var destinationLocation :Boolean = false
     private var userLatitude : Double? = null
     private var userLongitude : Double? = null
-    private var selectedAddress : String? = null
+    private var pickUpSelectedAddress : String? = null
+    private var destSelectedAddress : String? = null
     private var userCurrentAddress : String? = null
     companion object {
         val MY_PERMISSION_FINE_LOCATION = 101
@@ -105,7 +106,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         //mMap.addMarker(MarkerOptions().position(sydney).title("Somewhere in Sydney"))
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         setUpMap()
-        pickup_location_textView.text = userCurrentAddress
+        //pickup_location_textView.text = userCurrentAddress
     }
 
     /*private fun userCurrentLocation(){
@@ -122,10 +123,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         }
         pickup_layout.setOnClickListener {
             pickupLocation = true
+            destinationLocation = false
             loadPlacePicker()
         }
         destination_layout.setOnClickListener {
             destinationLocation = true
+            pickupLocation = false
             loadPlacePicker()
         }
     }
@@ -223,6 +226,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                         canGetLocation = true
+                        val intent = Intent(this, MapsActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        startActivity(intent)
+                        overridePendingTransition(0,0)
                     }else{
                         Toast.makeText(this,"This application requires location permission",Toast.LENGTH_LONG).show()
                         canGetLocation = false
@@ -309,12 +316,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 var addressText = place.name.toString()
                 addressText += "\n" + place.address.toString()
                 if(pickupLocation){
-                    selectedAddress = addressText
-                    pickup_location_textView.text = selectedAddress
+                    pickUpSelectedAddress = addressText
+                    pickup_location_textView.text = pickUpSelectedAddress
                 }
                 if(destinationLocation){
-                    selectedAddress = addressText
-                    dest_location_textView.text = selectedAddress
+                    destSelectedAddress = addressText
+                    dest_location_textView.text = destSelectedAddress
                 }
                 placeMarkerOnMap(place.latLng.latitude, place.latLng.longitude)
             }

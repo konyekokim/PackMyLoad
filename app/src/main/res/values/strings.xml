@@ -32,6 +32,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="map_activity_name">Set Pickup</string>
     <string name="pickup_location_text">Pickup Location</string>
+    <string name="dest_text">Destination</string>
+    <string name="enter_location_text">Enter Location</string>
     <string name="sample_location_text">Iju-Ishaga, Lagos</string>
     <string name="enter_destination_text">Enter Destination</string>
     <string name="continue_button_text">Continue</string>

@@ -29,14 +29,15 @@
             android:id="@+id/pickup_layout"
             android:background="@color/colorPrimaryDark"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:paddingEnd="18dp"
+            android:paddingStart="18dp">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:id="@+id/map_pickup_icon_imgView"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/up_arrow_in_circular_button"/>
@@ -52,10 +53,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pickup_location_textView"
-                android:text="@string/sample_location_text"
+                android:text="@string/enter_location_text"
                 android:layout_below="@+id/pickup_textView"
                 android:textSize="18sp"
-                android:layout_toEndOf="@+id/map_pickup_icon_imgView"/>
+                android:layout_toEndOf="@+id/map_pickup_icon_imgView"
+                android:maxLines="2"
+                android:ellipsize="end"/>
 
             <ImageView
                 android:layout_width="20dp"
@@ -63,8 +66,7 @@
                 android:layout_alignParentEnd="true"
                 android:id="@+id/right_pickup_arrow_imageView"
                 android:src="@drawable/light_blue_right_arrowhead"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="18dp"/>
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
 
@@ -75,14 +77,15 @@
             android:layout_below="@+id/pickup_layout"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:background="@color/colorViewColor">
+            android:background="@color/colorViewColor"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:id="@+id/map_dest_icon_imgView"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/down_arrow_in_circular_button"/>
@@ -90,10 +93,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/dest_text"
+                android:id="@+id/dest_textView"
+                android:layout_toEndOf="@+id/map_dest_icon_imgView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/dest_location_textView"
                 android:text="@string/enter_destination_text"
                 android:textSize="18sp"
-                android:layout_toEndOf="@+id/map_dest_icon_imgView"/>
+                android:layout_below="@+id/dest_textView"
+                android:layout_toEndOf="@+id/map_dest_icon_imgView"
+                android:maxLines="2"
+                android:ellipsize="end"/>
 
             <ImageView
                 android:layout_width="20dp"
@@ -101,8 +114,7 @@
                 android:layout_alignParentEnd="true"
                 android:id="@+id/right_destination_arrow_imageView"
                 android:src="@drawable/light_blue_right_arrowhead"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="18dp"/>
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
 
