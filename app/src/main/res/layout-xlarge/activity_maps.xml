@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context="com.chokus.konye.packmyload.MapsActivity"
+    android:orientation="vertical">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.chokus.konye.packmyload.MapsActivity"
+        android:layout_above="@+id/buttons_layout"
+        map:cameraZoom="19"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttons_layout"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pickup_layout"
+            android:background="@color/colorPrimaryDark"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="18dp"
+            android:paddingStart="18dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/map_pickup_icon_imgView"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="18dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/up_arrow_in_circular_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pickup_location_text"
+                android:id="@+id/pickup_textView"
+                android:textSize="20sp"
+                android:layout_toEndOf="@+id/map_pickup_icon_imgView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pickup_location_textView"
+                android:text="@string/enter_location_text"
+                android:layout_below="@+id/pickup_textView"
+                android:textSize="25sp"
+                android:layout_toEndOf="@+id/map_pickup_icon_imgView"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/right_pickup_arrow_imageView"
+                android:src="@drawable/light_blue_right_arrowhead"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/destination_layout"
+            android:layout_below="@+id/pickup_layout"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorViewColor"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/map_dest_icon_imgView"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="18dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/down_arrow_in_circular_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dest_text"
+                android:id="@+id/dest_textView"
+                android:textSize="20sp"
+                android:layout_toEndOf="@+id/map_dest_icon_imgView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dest_location_textView"
+                android:text="@string/enter_destination_text"
+                android:textSize="25sp"
+                android:layout_below="@+id/dest_textView"
+                android:layout_toEndOf="@+id/map_dest_icon_imgView"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/right_destination_arrow_imageView"
+                android:src="@drawable/light_blue_right_arrowhead"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/destination_layout"
+            android:id="@+id/continue_layout"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_button_text"
+                android:textSize="25sp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorPrimaryDark"/>
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
