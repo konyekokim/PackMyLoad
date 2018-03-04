@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chokus.konye.packmyload.PaymentActivity"
+    android:background="@color/colorLightBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="80dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/add_card_relativeLayout"
+        android:background="@drawable/curved_white_button">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:id="@+id/new_icon"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/credit_card_blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_card_title"
+            android:layout_toEndOf="@+id/new_icon"
+            android:id="@+id/new_icon_textView"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/arrow_point_to_right"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
