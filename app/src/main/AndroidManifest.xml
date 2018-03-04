@@ -70,9 +70,6 @@
         <activity
             android:name=".FacebookLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".NumberVerificationActivity"
-            android:parentActivityName=".PhoneNumbersActivity" />
         <activity android:name=".HomePageActivity" />
         <activity
             android:name=".PhoneNumbersActivity"
@@ -120,7 +117,8 @@
             android:parentActivityName=".SelectYourSizeActivity"/>
         <activity
             android:name=".ItemsMovingActivity"
-            android:parentActivityName=".SelectPickupTimeActivity"/>
+            android:parentActivityName=".SelectPickupTimeActivity"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".PickupDateActivity"
             android:parentActivityName=".ItemsMovingActivity"/>
