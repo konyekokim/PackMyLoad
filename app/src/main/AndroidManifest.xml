@@ -25,7 +25,7 @@
 
 
     <application
-        android:name=".Application.MyApplication"
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:exported="true"
         android:fullBackupContent="true"
@@ -36,7 +36,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
-            android:name=".Provider.GenericFileProvider"
+            android:name=".provider.GenericFileProvider"
             android:authorities="${applicationId}.my.package.name.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -63,7 +63,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.SplashScreenActivity"
+            android:name=".activities.SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -73,33 +73,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.GetStartedActivity"
+            android:name=".activities.GetStartedActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.HomePageActivity" />
+        <activity android:name=".activities.HomePageActivity" />
         <activity
-            android:name=".Activities.PhoneNumbersActivity"
-            android:parentActivityName=".Activities.GetStartedActivity"
+            android:name=".activities.PhoneNumbersActivity"
+            android:parentActivityName=".activities.GetStartedActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.HistoryActivity"
-            android:parentActivityName=".Activities.HomePageActivity"
+            android:name=".activities.HistoryActivity"
+            android:parentActivityName=".activities.HomePageActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.ProfileActivity"
-            android:parentActivityName=".Activities.HomePageActivity"
+            android:name=".activities.ProfileActivity"
+            android:parentActivityName=".activities.HomePageActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.PaymentActivity"
-            android:parentActivityName=".Activities.HomePageActivity"
+            android:name=".activities.PaymentActivity"
+            android:parentActivityName=".activities.HomePageActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.AddCardActivity"
-            android:parentActivityName=".Activities.PaymentActivity"
+            android:name=".activities.AddCardActivity"
+            android:parentActivityName=".activities.PaymentActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.AboutActivity"
-            android:parentActivityName=".Activities.HomePageActivity"
+            android:name=".activities.AboutActivity"
+            android:parentActivityName=".activities.HomePageActivity"
             android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -114,28 +114,28 @@
             android:value="@string/google_maps_key"/>
 
         <activity
-            android:name=".Activities.MapsActivity"
+            android:name=".activities.MapsActivity"
             android:label="@string/title_activity_maps"
-            android:parentActivityName=".Activities.HomePageActivity"
+            android:parentActivityName=".activities.HomePageActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".Activities.SelectYourSizeActivity"
-            android:parentActivityName=".Activities.MapsActivity"
+            android:name=".activities.SelectYourSizeActivity"
+            android:parentActivityName=".activities.MapsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.SelectPickupTimeActivity"
-            android:parentActivityName=".Activities.SelectYourSizeActivity"
+            android:name=".activities.SelectPickupTimeActivity"
+            android:parentActivityName=".activities.SelectYourSizeActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.ItemsMovingActivity"
-            android:parentActivityName=".Activities.SelectPickupTimeActivity"
+            android:name=".activities.ItemsMovingActivity"
+            android:parentActivityName=".activities.SelectPickupTimeActivity"
             android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.PickupDateActivity"
-            android:parentActivityName=".Activities.ItemsMovingActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".activities.PickupDateActivity"
+            android:parentActivityName=".activities.ItemsMovingActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

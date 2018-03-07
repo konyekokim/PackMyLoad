@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload.Activities
+package com.chokus.konye.packmyload.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Toast
 import com.chokus.konye.packmyload.R
-import com.chokus.konye.packmyload.ServiceModel.ServiceClass
+import com.chokus.konye.packmyload.servicemodel.ServiceClass
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*

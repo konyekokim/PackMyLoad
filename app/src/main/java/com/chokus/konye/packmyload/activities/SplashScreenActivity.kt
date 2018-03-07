@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload.Activities
+package com.chokus.konye.packmyload.activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity

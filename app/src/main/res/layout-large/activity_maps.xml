@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context="com.chokus.konye.packmyload.Activities.MapsActivity"
+    tools:context="com.chokus.konye.packmyload.activities.MapsActivity"
     android:orientation="vertical">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.chokus.konye.packmyload.Activities.MapsActivity"
+        tools:context="com.chokus.konye.packmyload.activities.MapsActivity"
         android:layout_above="@+id/buttons_layout"
         map:cameraZoom="19"/>
 
