@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload.activities
+package com.chokus.konye.packmyload.activity
 
 import android.annotation.SuppressLint
 import android.content.Context

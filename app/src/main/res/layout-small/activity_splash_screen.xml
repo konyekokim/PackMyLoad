@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context="com.chokus.konye.packmyload.activities.SplashScreenActivity">
+    tools:context="com.chokus.konye.packmyload.activity.SplashScreenActivity">
 
     <ImageView
         android:layout_width="match_parent"

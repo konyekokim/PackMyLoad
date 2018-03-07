@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context="com.chokus.konye.packmyload.activities.GetStartedActivity">
+    tools:context="com.chokus.konye.packmyload.activity.GetStartedActivity">
 
     <ImageView
         android:layout_width="match_parent"

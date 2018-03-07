@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload.activities
+package com.chokus.konye.packmyload.activity
 
 import android.app.DatePickerDialog
 import android.app.Dialog

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chokus.konye.packmyload.activities.ProfileActivity"
+    tools:context="com.chokus.konye.packmyload.activity.ProfileActivity"
     android:background="@color/colorLightBackground">
 
     <RelativeLayout
