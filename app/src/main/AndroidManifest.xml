@@ -76,7 +76,8 @@
             android:name=".activities.GetStartedActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.HomePageActivity" />
+        <activity
+            android:name=".activities.HomePageActivity" />
         <activity
             android:name=".activities.PhoneNumbersActivity"
             android:parentActivityName=".activities.GetStartedActivity"
