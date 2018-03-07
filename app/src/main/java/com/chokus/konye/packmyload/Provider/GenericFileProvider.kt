@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.Provider
 
 import android.support.v4.content.FileProvider
 

@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.ServiceModel
 
 /**
  * Created by ALPHA AND JAM on 1/12/2018.

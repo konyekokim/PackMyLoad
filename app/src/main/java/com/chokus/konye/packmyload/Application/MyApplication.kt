@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.Application
 
 import android.app.Application
 import android.content.Context
