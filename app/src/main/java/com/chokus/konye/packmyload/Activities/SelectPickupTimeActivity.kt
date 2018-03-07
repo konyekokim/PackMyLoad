@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.Activities
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -7,12 +7,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
-import android.widget.Toast
+import com.chokus.konye.packmyload.R
 import kotlinx.android.synthetic.main.activity_select_pickup_time.*
 import kotlinx.android.synthetic.main.time_list_dialog.*
-import java.lang.reflect.Array
 import java.text.SimpleDateFormat
-import java.time.Year
 import java.util.*
 
 class SelectPickupTimeActivity : AppCompatActivity() {
@@ -52,7 +50,7 @@ class SelectPickupTimeActivity : AppCompatActivity() {
                 chosen_date_textView.text = SimpleDateFormat("MMM-d", Locale.ENGLISH).format(calendar!!.time)
             }
         }
-        DatePickerDialog(this,R.style.DialogTheme, date,calendar!!.get(Calendar.YEAR), calendar!!.get(Calendar.MONTH), calendar!!.get(Calendar.DAY_OF_MONTH)).show()
+        DatePickerDialog(this, R.style.DialogTheme, date,calendar!!.get(Calendar.YEAR), calendar!!.get(Calendar.MONTH), calendar!!.get(Calendar.DAY_OF_MONTH)).show()
     }
 
     private fun timeListDialog(){

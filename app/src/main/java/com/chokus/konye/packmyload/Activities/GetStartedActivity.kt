@@ -1,4 +1,4 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.Activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import com.chokus.konye.packmyload.R
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -89,7 +90,7 @@ class GetStartedActivity : AppCompatActivity() {
         //check if there is a user currently signed in.. then take action
         val currentUser : FirebaseUser? = firebaseAuth?.currentUser
         if(currentUser != null){
-            startActivity(Intent(this,HomePageActivity::class.java))
+            startActivity(Intent(this, HomePageActivity::class.java))
         }
     }
 }

@@ -1,7 +1,8 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.chokus.konye.packmyload.R
 
 class HistoryActivity : AppCompatActivity() {
 

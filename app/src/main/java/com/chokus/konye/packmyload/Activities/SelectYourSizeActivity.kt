@@ -1,8 +1,9 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.Activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.chokus.konye.packmyload.R
 import kotlinx.android.synthetic.main.activity_select_your_size.*
 
 class SelectYourSizeActivity : AppCompatActivity() {

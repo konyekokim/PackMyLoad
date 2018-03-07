@@ -1,9 +1,10 @@
-package com.chokus.konye.packmyload
+package com.chokus.konye.packmyload.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.chokus.konye.packmyload.R
 
 class ProfileActivity : AppCompatActivity() {
 
