@@ -116,6 +116,7 @@ class HomePageActivity : AppCompatActivity() {
         serviceList.add(ServiceClass("Storage Move", R.drawable.pml_storage_move))
         serviceList.add(ServiceClass("Donation Pickup", R.drawable.pml_donation_pickup))
         serviceList.add(ServiceClass("Junk Removal", R.drawable.pml_junk_removal))
+        serviceList.add(ServiceClass("Food Delivery", R.drawable.pml_food_delivery))
         serviceList.add(ServiceClass("other", R.drawable.pml_other))
     }
 
