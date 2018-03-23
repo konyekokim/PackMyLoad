@@ -41,6 +41,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     private var destinationLocation :Boolean = false
     private var userLatitude : Double? = null
     private var userLongitude : Double? = null
+    private var startLocation : Location? = null
+    private var endLocation : Location? = null
+    private var startLatLng : LatLng? = null
+    private var endLatLng : LatLng? = null
     private var pickUpSelectedAddress : String? = null
     private var destSelectedAddress : String? = null
     private var userCurrentAddress : String? = null
@@ -116,6 +120,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
 
     private fun viewActions(){
         continue_layout.setOnClickListener {
+            startLatLng = getCoordinatesFromAddress(pickup_location_textView.text.toString())
+            endLatLng = getCoordinatesFromAddress(dest_location_textView.text.toString())
+            if(startLatLng != null && endLatLng != null){
+                getStartAndEndLocation(startLatLng!!, endLatLng!!)
+            }
+            if(startLocation != null && endLocation != null){
+                Toast.makeText(this,
+                        "" + distanceBetweenLocations(startLocation!!, endLocation!!).toString() + " km",
+                        Toast.LENGTH_LONG).show()
+            }
             val intent = Intent(this, SelectYourSizeActivity::class.java)
             startActivity(intent)
         }
@@ -129,6 +143,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             pickupLocation = false
             loadPlacePicker()
         }
+
     }
 
     private fun prepareLocationManager(){
@@ -322,8 +337,46 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                     dest_location_textView.text = destSelectedAddress
                 }
                 placeMarkerOnMap(place.latLng.latitude, place.latLng.longitude)
+
             }
         }
+    }
+
+    private fun getCoordinatesFromAddress(locationAddress : String) : LatLng?{
+        val geocoder : Geocoder = Geocoder(this)
+        val address : List<Address>
+        var position : LatLng? = null
+        try{
+            //May throw an IOException
+            address = geocoder.getFromLocationName(locationAddress, 5)
+            if(address == null){
+                return null
+            }
+            if (address.isNotEmpty()){
+                val location : Address = address.get(0)
+                position = LatLng(location.latitude, location.longitude)
+            }
+        }catch (x : IOException){
+            x.printStackTrace()
+        }
+        return position
+    }
+
+    private fun getStartAndEndLocation(startLatLng: LatLng, endLatLng: LatLng){
+        //for the start location
+        startLocation = Location("")
+        startLocation!!.latitude(startLatLng.latitude)
+        startLocation!!.longitude(startLatLng.longitude)
+        //for the end location
+        endLocation = Location("")
+        endLocation!!.latitude(endLatLng.latitude)
+        endLocation!!.longitude(endLatLng.longitude)
+
+    }
+
+    private fun distanceBetweenLocations(startLoc : Location, endLoc : Location) : Float{
+      val distance : Float = endLoc.distanceTo(startLoc)/1000
+        return distance
     }
 
     override fun onDestroy() {
@@ -336,3 +389,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
 }
 
 private operator fun Int.invoke(maP_TYPE_TERRAIN: Int) {}
+private operator fun Double.invoke(latitude: Double) {}
