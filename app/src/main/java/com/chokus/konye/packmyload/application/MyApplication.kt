@@ -24,6 +24,7 @@ class MyApplication : MultiDexApplication(){
         FacebookSdk.sdkInitialize(applicationContext)
         AppEventsLogger.activateApp(this)
         FirebaseApp.initializeApp(this)
+
         //adding volley singleton instance
         instance = this
     }
