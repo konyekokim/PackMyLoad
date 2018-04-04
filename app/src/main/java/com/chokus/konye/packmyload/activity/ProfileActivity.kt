@@ -7,8 +7,13 @@ import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.io.StringReader
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -37,8 +42,6 @@ class ProfileActivity : AppCompatActivity() {
         if(phoneNumber_editText.toString().isEmpty()){
             Toast.makeText(this, "Please enter your phone number", Toast.LENGTH_SHORT).show()
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -56,6 +59,21 @@ class ProfileActivity : AppCompatActivity() {
     private fun sendData(){
         progressDialog!!.setMessage("Saving data please wait...")
         progressDialog!!.show()
+        val stringRequest = object : StringRequest(Request.Method.POST, URL,
+                Response.Listener<String>{response ->
 
+                }, object : Response.ErrorListener{
+            override fun onErrorResponse(error: VolleyError?) {
+                Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                //need better API to add the information from this activity to the database e.g. shown  below
+                //params.put("name", firstName_editText.text.toString())
+                return super.getParams()
+            }
+        }
     }
 }
