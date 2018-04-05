@@ -3,7 +3,6 @@ package com.chokus.konye.packmyload.activity
 import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,7 +12,6 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
 import kotlinx.android.synthetic.main.activity_profile.*
-import java.io.StringReader
 
 class ProfileActivity : AppCompatActivity() {
 
