@@ -421,7 +421,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 val params = HashMap<String, String>()
                 //need better API to add the information from this activity to the database e.g. shown  below
                 //params.put("name", firstName_editText.text.toString())
-                return super.getParams()
+                return params
             }
         }
         MyApplication.instance?.addToRequestQueue(stringRequest)
