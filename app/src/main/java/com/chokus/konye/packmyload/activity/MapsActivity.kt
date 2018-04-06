@@ -140,7 +140,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                         "" + distanceBetweenLocations(startLocation!!, endLocation!!).toString() + " km",
                         Toast.LENGTH_LONG).show()
             }
-            sendData()
+            //sendData()
         }
         pickup_layout.setOnClickListener {
             pickupLocation = true

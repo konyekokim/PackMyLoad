@@ -53,6 +53,7 @@ class ProfileActivity : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if(item!!.itemId == R.id.save){
             //do saving action here wait for backend to be ready and collect from widgets here
+            //sendData()
         }
         return super.onOptionsItemSelected(item)
     }
