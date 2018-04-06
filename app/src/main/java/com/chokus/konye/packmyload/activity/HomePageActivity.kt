@@ -1,6 +1,7 @@
 package com.chokus.konye.packmyload.activity
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -10,17 +11,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
+import com.chokus.konye.packmyload.application.MyApplication
 import com.chokus.konye.packmyload.servicemodel.ServiceClass
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
+import org.json.JSONObject
 
 class HomePageActivity : AppCompatActivity() {
     var gridAdapter : ServiceGridAdapter? = null
     var listAdapter : DrawerListAdapter? = null
     var serviceList= ArrayList<ServiceClass>()
     var iconList = ArrayList<ServiceClass>()
+    private var progressDialog : ProgressDialog? = null
+    private val URL = "put in API string here"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
@@ -28,6 +37,7 @@ class HomePageActivity : AppCompatActivity() {
         viewActions()
         gridViewActions()
         listViewActions()
+        progressDialog = ProgressDialog(this)
     }
 
     private fun viewActions(){
@@ -35,12 +45,7 @@ class HomePageActivity : AppCompatActivity() {
             pml_drawer_layout.openDrawer(home_page_drawer_layout)
         }
         gift_img.setOnClickListener {
-            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
-        }
-        booking_text_view.setOnClickListener {
-            //this is just a tester remember to remove it
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
+            toastMethod("This action will take you to the website")
         }
     }
 
@@ -49,10 +54,9 @@ class HomePageActivity : AppCompatActivity() {
         gridAdapter = ServiceGridAdapter(this, serviceList)
         grid_view.adapter = gridAdapter
         grid_view.setOnItemClickListener { parent, view, position, id ->
-            //create a function like drawerListActions
-            //this one is just a temporary tester
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
+            //depending on the API requirement we might need the title  below
+            val title : String = serviceList[position].name!!
+            sendData()
         }
     }
 
@@ -197,6 +201,37 @@ class HomePageActivity : AppCompatActivity() {
 
             return iconListView
         }
+    }
+
+    private fun sendData(){
+        progressDialog!!.setMessage("Loading")
+        progressDialog!!.show()
+        val stringRequest = object : StringRequest(Request.Method.POST, URL,
+                Response.Listener<String>{ response ->
+                    //use this to get hte response from the backend
+                    progressDialog!!.dismiss()
+                    val obj = JSONObject(response)
+                    //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
+                    //        "in backend"), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
+
+                }, object : Response.ErrorListener{
+            override fun onErrorResponse(error: VolleyError?) {
+                progressDialog!!.dismiss()
+                toastMethod(error?.message)
+                Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                //need better API to add the information from this activity to the database e.g. shown  below
+                //params.put("name", firstName_editText.text.toString())
+                return super.getParams()
+            }
+        }
+        MyApplication.instance?.addToRequestQueue(stringRequest)
     }
 
     private fun toastMethod(message : String?){
