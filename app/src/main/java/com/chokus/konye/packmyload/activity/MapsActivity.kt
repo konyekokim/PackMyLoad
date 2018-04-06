@@ -134,13 +134,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             endLatLng = getCoordinatesFromAddress(dest_location_textView.text.toString())
             if(startLatLng != null && endLatLng != null){
                 getStartAndEndLocation(startLatLng!!, endLatLng!!)
+                checkViews()
             }
             if(startLocation != null && endLocation != null){
                 Toast.makeText(this,
                         "" + distanceBetweenLocations(startLocation!!, endLocation!!).toString() + " km",
                         Toast.LENGTH_LONG).show()
             }
-            //sendData()
         }
         pickup_layout.setOnClickListener {
             pickupLocation = true
@@ -152,7 +152,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             pickupLocation = false
             loadPlacePicker()
         }
+    }
 
+    private fun checkViews(){
+        when{
+            pickup_location_textView.text.toString().equals("Enter Location") ->
+                    toastMethod("Please enter valid location")
+            dest_location_textView.text.toString().equals("Enter Destination") ->
+                    toastMethod("Please enter valid Destination")
+            else -> sendData()
+        }
     }
 
     private fun prepareLocationManager(){
@@ -253,7 +262,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                         startActivity(intent)
                         overridePendingTransition(0,0)
                     }else{
-                        Toast.makeText(this,"This application requires location permission",Toast.LENGTH_LONG).show()
+                        toastMethod("This application requires location permission")
                         canGetLocation = false
                         finish()
                     }
@@ -389,7 +398,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     }
 
     private fun sendData(){
-        progressDialog!!.setMessage("Saving data please wait...")
+        progressDialog!!.setMessage("Loading...")
         progressDialog!!.show()
         val stringRequest = object : StringRequest(Request.Method.POST, URL,
                 Response.Listener<String>{ response ->
@@ -404,7 +413,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                 }, object : Response.ErrorListener{
             override fun onErrorResponse(error: VolleyError?) {
                 progressDialog!!.dismiss()
-                Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
+                toastMethod(error?.message)
             }
         })
         {
@@ -423,6 +432,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         if (locationManager != null) {
             locationManager!!.removeUpdates(this)
         }
+    }
+
+    private fun toastMethod(message : String?){
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
 }

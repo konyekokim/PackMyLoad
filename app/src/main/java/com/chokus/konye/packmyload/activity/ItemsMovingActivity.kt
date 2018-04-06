@@ -2,6 +2,7 @@ package com.chokus.konye.packmyload.activity
 
 import android.Manifest
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
@@ -16,13 +17,21 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.util.Log
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
+import com.chokus.konye.packmyload.application.MyApplication
 import kotlinx.android.synthetic.main.activity_items_moving.*
+import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 
 class ItemsMovingActivity : AppCompatActivity() {
     private var file : File? = null
+    private var progressDialog : ProgressDialog? = null
+    private val URL = "put in your string here"
     companion object {
         val MY_REQUEST_CAMERA = 101
         val MY_REQUEST_WRITE_CAMERA = 102
@@ -39,6 +48,7 @@ class ItemsMovingActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.items_moving_activity)
         viewActions()
+        progressDialog = ProgressDialog(this)
     }
 
     private fun viewActions(){
@@ -46,8 +56,14 @@ class ItemsMovingActivity : AppCompatActivity() {
             pickImageSourceDialog()
         }
         add_photo_layout.setOnClickListener {
-            val intent = Intent(this, PickupDateActivity::class.java)
-            startActivity(intent)
+            //checkViews()
+        }
+    }
+
+    private fun checkViews(){
+        when{
+            about_item_editText.text.toString().isEmpty() -> toastMethod("please enter description of item")
+            else -> sendData()
         }
     }
 
@@ -118,7 +134,7 @@ class ItemsMovingActivity : AppCompatActivity() {
                 //do nothing
             }
         }else{
-            Toast.makeText(this, "Please check your sdCard",Toast.LENGTH_SHORT).show()
+            toastMethod("please check your sd card")
         }
     }
 
@@ -188,5 +204,40 @@ class ItemsMovingActivity : AppCompatActivity() {
         //change color of button text
         positiveButton.setTextColor(resources.getColor(R.color.colorPrimary))
         negativeButton.setTextColor(resources.getColor(R.color.colorPrimary))
+    }
+
+    private fun sendData(){
+        progressDialog!!.setMessage("Loading")
+        progressDialog!!.show()
+        val stringRequest = object : StringRequest(Request.Method.POST, URL,
+                Response.Listener<String>{ response ->
+                    //use this to get hte response from the backend
+                    progressDialog!!.dismiss()
+                    val obj = JSONObject(response)
+                    //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
+                    //        "in backend"), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, PickupDateActivity::class.java)
+                    startActivity(intent)
+
+                }, object : Response.ErrorListener{
+            override fun onErrorResponse(error: VolleyError?) {
+                progressDialog!!.dismiss()
+                toastMethod(error?.message)
+                Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                //need better API to add the information from this activity to the database e.g. shown  below
+                //params.put("name", firstName_editText.text.toString())
+                return super.getParams()
+            }
+        }
+        MyApplication.instance?.addToRequestQueue(stringRequest)
+    }
+
+    private fun toastMethod(message : String?){
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 }

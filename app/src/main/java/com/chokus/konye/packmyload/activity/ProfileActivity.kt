@@ -29,19 +29,14 @@ class ProfileActivity : AppCompatActivity(){
         progressDialog = ProgressDialog(this)
     }
 
-    private fun onViewActions(){
+    private fun checkViews(){
         //checking if edit text widgets are empty or not
-        if(firstName_editText.toString().isEmpty()){
-            Toast.makeText(this, "Please enter your fist naeme", Toast.LENGTH_SHORT).show()
-        }
-        if(lastName_editText.toString().isEmpty()){
-            Toast.makeText(this, "Plesse enter your last name", Toast.LENGTH_SHORT).show()
-        }
-        if(emailAddress_editText.toString().isEmpty()){
-            Toast.makeText(this, "Plesse enter your last name", Toast.LENGTH_SHORT).show()
-        }
-        if(phoneNumber_editText.toString().isEmpty()){
-            Toast.makeText(this, "Please enter your phone number", Toast.LENGTH_SHORT).show()
+        when {
+            firstName_editText.text.toString().isEmpty() -> toastMethod("please enter your first name")
+            lastName_editText.text.toString().isEmpty() -> toastMethod("please enter your last name")
+            emailAddress_editText.text.toString().isEmpty() -> toastMethod("please enter your email address")
+            phoneNumber_editText.text.toString().isEmpty() -> toastMethod("please enter your phone number")
+            else -> sendData()
         }
     }
 
@@ -53,7 +48,7 @@ class ProfileActivity : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if(item!!.itemId == R.id.save){
             //do saving action here wait for backend to be ready and collect from widgets here
-            //sendData()
+            //checkViews()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -72,6 +67,7 @@ class ProfileActivity : AppCompatActivity(){
                 }, object : Response.ErrorListener{
             override fun onErrorResponse(error: VolleyError?) {
                 progressDialog!!.dismiss()
+                toastMethod(error?.message)
                 Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -84,5 +80,9 @@ class ProfileActivity : AppCompatActivity(){
             }
         }
         MyApplication.instance?.addToRequestQueue(stringRequest)
+    }
+
+    private fun toastMethod(message : String?){
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 }
