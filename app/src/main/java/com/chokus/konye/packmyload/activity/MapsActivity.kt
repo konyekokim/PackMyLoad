@@ -2,6 +2,7 @@ package com.chokus.konye.packmyload.activity
 
 import android.Manifest
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.app.Service
 import android.content.DialogInterface
 import android.content.Intent
@@ -14,7 +15,12 @@ import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
+import com.chokus.konye.packmyload.application.MyApplication
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.location.places.ui.PlacePicker
@@ -27,6 +33,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
+import org.json.JSONObject
 import java.io.IOException
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
@@ -48,6 +55,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     private var pickUpSelectedAddress : String? = null
     private var destSelectedAddress : String? = null
     private var userCurrentAddress : String? = null
+    private var progressDialog : ProgressDialog? = null
+    private val URL ="put your URL here"
     companion object {
         val MY_PERMISSION_FINE_LOCATION = 101
         val MIN_DISTANCE_CHANGE_FOR_UPDATES = 10.toFloat()
@@ -66,6 +75,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         setTitle(R.string.map_activity_name)
         viewActions()
         prepareLocationManager()
+        progressDialog = ProgressDialog(this)
     }
 
     override fun onLocationChanged(location: Location?) {
@@ -130,8 +140,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
                         "" + distanceBetweenLocations(startLocation!!, endLocation!!).toString() + " km",
                         Toast.LENGTH_LONG).show()
             }
-            val intent = Intent(this, SelectYourSizeActivity::class.java)
-            startActivity(intent)
+            sendData()
         }
         pickup_layout.setOnClickListener {
             pickupLocation = true
@@ -377,6 +386,36 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     private fun distanceBetweenLocations(startLoc : Location, endLoc : Location) : Float{
       val distance : Float = endLoc.distanceTo(startLoc)/1000
         return distance
+    }
+
+    private fun sendData(){
+        progressDialog!!.setMessage("Saving data please wait...")
+        progressDialog!!.show()
+        val stringRequest = object : StringRequest(Request.Method.POST, URL,
+                Response.Listener<String>{ response ->
+                    //use this to get hte response from the backend
+                    progressDialog!!.dismiss()
+                    val obj = JSONObject(response)
+                    //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
+                    //        "in backend"), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, SelectYourSizeActivity::class.java)
+                    startActivity(intent)
+
+                }, object : Response.ErrorListener{
+            override fun onErrorResponse(error: VolleyError?) {
+                progressDialog!!.dismiss()
+                Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                //need better API to add the information from this activity to the database e.g. shown  below
+                //params.put("name", firstName_editText.text.toString())
+                return super.getParams()
+            }
+        }
+        MyApplication.instance?.addToRequestQueue(stringRequest)
     }
 
     override fun onDestroy() {

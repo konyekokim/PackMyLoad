@@ -1,6 +1,7 @@
 package com.chokus.konye.packmyload.activity
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,9 +12,11 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
+import com.chokus.konye.packmyload.application.MyApplication
 import kotlinx.android.synthetic.main.activity_profile.*
+import org.json.JSONObject
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity(){
 
     private var progressDialog : ProgressDialog? = null
     private val URL ="put in the valid URLs here"
@@ -59,9 +62,15 @@ class ProfileActivity : AppCompatActivity() {
         progressDialog!!.show()
         val stringRequest = object : StringRequest(Request.Method.POST, URL,
                 Response.Listener<String>{response ->
+                    progressDialog!!.dismiss()
+                    val obj = JSONObject(response)
+                    //create a toast or whatever function for whatever you want to do on from here
+                    val intent = Intent(applicationContext, HomePageActivity::class.java)
+                    startActivity(intent)
 
                 }, object : Response.ErrorListener{
             override fun onErrorResponse(error: VolleyError?) {
+                progressDialog!!.dismiss()
                 Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -73,5 +82,6 @@ class ProfileActivity : AppCompatActivity() {
                 return super.getParams()
             }
         }
+        MyApplication.instance?.addToRequestQueue(stringRequest)
     }
 }
