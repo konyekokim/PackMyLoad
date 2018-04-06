@@ -83,23 +83,23 @@ class HomePageActivity : AppCompatActivity() {
         }
         if(pos==3){
             //free pml
-            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
+            toastMethod("This action will take you to the website")
         }
         if(pos==4){
             //become a packer
-            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
+            toastMethod("This action will take you to the website")
         }
         if(pos==5){
             //send feedback
-            Toast.makeText(this,"This action will take you to the website",Toast.LENGTH_LONG).show()
+            toastMethod("This action will take you to the website")
         }
         if(pos==6){
             //review on google play
-            Toast.makeText(this,"This action will take you to play store",Toast.LENGTH_LONG).show()
+            toastMethod("This action will take you to play store")
         }
         if(pos==7){
             //have questions?
-            Toast.makeText(this,"This action will take you to play store",Toast.LENGTH_LONG).show()
+            toastMethod("This action will take you to play store")
         }
         if(pos==8){
             //about
@@ -197,7 +197,10 @@ class HomePageActivity : AppCompatActivity() {
 
             return iconListView
         }
+    }
 
+    private fun toastMethod(message : String?){
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
 }
