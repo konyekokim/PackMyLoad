@@ -2,20 +2,30 @@ package com.chokus.konye.packmyload.activity
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
+import com.chokus.konye.packmyload.application.MyApplication
 import kotlinx.android.synthetic.main.activity_select_pickup_time.*
 import kotlinx.android.synthetic.main.time_list_dialog.*
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
 class SelectPickupTimeActivity : AppCompatActivity() {
     private var calendar : Calendar? = null
     private var timePickingDialog : Dialog? = null
+    private var progressDialog : ProgressDialog? = null
+    private val URL = "put in your API string here"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +34,12 @@ class SelectPickupTimeActivity : AppCompatActivity() {
         setTitle(R.string.select_pickup_time)
         viewActions()
         calendar = Calendar.getInstance()
+        progressDialog = ProgressDialog(this)
     }
 
     private fun viewActions(){
         continue_layout.setOnClickListener {
-            val intent = Intent(this, ItemsMovingActivity::class.java)
-            startActivity(intent)
+            //checkViews()
         }
         choose_date_layout.setOnClickListener {
             datePickerAction()
@@ -38,6 +48,16 @@ class SelectPickupTimeActivity : AppCompatActivity() {
             //do time picking  function here
             timeListDialog()
             timePickingDialog!!.show()
+        }
+    }
+
+    private fun checkViews(){
+        when{
+            chosen_date_textView.text.toString().equals(R.string.choose_date_text) ->
+                    toastMethod("please choose date")
+            chosen_time_textView.text.toString().equals(R.string.choose_time_text) ->
+                    toastMethod("please choose time")
+            else -> sendData()
         }
     }
 
@@ -72,5 +92,39 @@ class SelectPickupTimeActivity : AppCompatActivity() {
                 "12:00 PM - 1:00 PM", "1:00 PM - 2:00 PM", "2:00 PM - 3:00 PM", "3:00 PM - 4:00PM", "4:00PM - 5:00PM",
                 "5:00PM - 6:00PM")
         return items
+    }
+
+    private fun sendData(){
+        progressDialog!!.setMessage("Loading")
+        progressDialog!!.show()
+        val stringRequest = object : StringRequest(Request.Method.POST, URL,
+                Response.Listener<String>{ response ->
+                    //use this to get hte response from the backend
+                    progressDialog!!.dismiss()
+                    val obj = JSONObject(response)
+                    //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
+                    //        "in backend"), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, ItemsMovingActivity::class.java)
+                    startActivity(intent)
+
+                }, object : Response.ErrorListener{
+            override fun onErrorResponse(error: VolleyError?) {
+                progressDialog!!.dismiss()
+                toastMethod(error?.message)
+            }
+        })
+        {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                //need better API to add the information from this activity to the database e.g. shown  below
+                //params.put("name", firstName_editText.text.toString())
+                return super.getParams()
+            }
+        }
+        MyApplication.instance?.addToRequestQueue(stringRequest)
+    }
+
+    private fun toastMethod(message : String?){
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 }
