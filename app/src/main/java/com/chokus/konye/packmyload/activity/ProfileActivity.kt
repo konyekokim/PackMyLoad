@@ -68,7 +68,6 @@ class ProfileActivity : AppCompatActivity(){
             override fun onErrorResponse(error: VolleyError?) {
                 progressDialog!!.dismiss()
                 toastMethod(error?.message)
-                Toast.makeText(applicationContext, error?.message, Toast.LENGTH_SHORT).show()
             }
         })
         {
