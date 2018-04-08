@@ -40,6 +40,9 @@ class SelectPickupTimeActivity : AppCompatActivity() {
     private fun viewActions(){
         continue_layout.setOnClickListener {
             //checkViews()
+            //remember to remove this block of code
+            val intent = Intent(applicationContext, ItemsMovingActivity::class.java)
+            startActivity(intent)
         }
         choose_date_layout.setOnClickListener {
             datePickerAction()

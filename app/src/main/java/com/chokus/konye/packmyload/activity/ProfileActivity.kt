@@ -49,6 +49,10 @@ class ProfileActivity : AppCompatActivity(){
         if(item!!.itemId == R.id.save){
             //do saving action here wait for backend to be ready and collect from widgets here
             //checkViews()
+            //remember to remove this block of code
+            val intent = Intent(applicationContext, HomePageActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -63,6 +67,7 @@ class ProfileActivity : AppCompatActivity(){
                     //create a toast or whatever function for whatever you want to do on from here
                     val intent = Intent(applicationContext, HomePageActivity::class.java)
                     startActivity(intent)
+                    finish()
 
                 }, object : Response.ErrorListener{
             override fun onErrorResponse(error: VolleyError?) {

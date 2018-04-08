@@ -57,6 +57,9 @@ class ItemsMovingActivity : AppCompatActivity() {
         }
         add_photo_layout.setOnClickListener {
             //checkViews()
+            //remember to remove this block of code as it is just for test
+            val intent = Intent(applicationContext,PickupDateActivity::class.java)
+            startActivity(intent)
         }
     }
 

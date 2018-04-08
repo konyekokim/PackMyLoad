@@ -30,11 +30,15 @@ class AddCardActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         //checkViews()
+        //remember to remove this code
+        finish()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             //checkViews()
+            //remember to remove this code
+            finish()
         }
         return super.onKeyDown(keyCode, event)
     }

@@ -134,13 +134,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             endLatLng = getCoordinatesFromAddress(dest_location_textView.text.toString())
             if(startLatLng != null && endLatLng != null){
                 getStartAndEndLocation(startLatLng!!, endLatLng!!)
-                checkViews()
+                //checkViews()
             }
             if(startLocation != null && endLocation != null){
                 Toast.makeText(this,
                         "" + distanceBetweenLocations(startLocation!!, endLocation!!).toString() + " km",
                         Toast.LENGTH_LONG).show()
             }
+            //remember to remove this block of code  as it is just for testing
+            val intent = Intent(applicationContext, SelectYourSizeActivity::class.java)
+            startActivity(intent)
         }
         pickup_layout.setOnClickListener {
             pickupLocation = true

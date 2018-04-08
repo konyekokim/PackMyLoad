@@ -56,7 +56,10 @@ class HomePageActivity : AppCompatActivity() {
         grid_view.setOnItemClickListener { parent, view, position, id ->
             //depending on the API requirement we might need the title  below
             val title : String = serviceList[position].name!!
-            sendData()
+            //sendData()
+            //remember to remove this block of code as it is  just for testing
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
         }
     }
 

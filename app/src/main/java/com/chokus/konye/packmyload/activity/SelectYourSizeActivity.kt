@@ -29,7 +29,10 @@ class SelectYourSizeActivity : AppCompatActivity() {
 
     private fun viewActions(){
         continue_layout.setOnClickListener {
-           sendData()
+           //sendData()
+            //remember to remove this block of code
+            val intent = Intent(applicationContext, SelectPickupTimeActivity::class.java)
+            startActivity(intent)
         }
     }
 
