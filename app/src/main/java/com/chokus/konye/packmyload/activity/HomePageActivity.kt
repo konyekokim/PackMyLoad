@@ -31,7 +31,7 @@ class HomePageActivity : AppCompatActivity() {
     var serviceList= ArrayList<ServiceClass>()
     var iconList = ArrayList<DrawerClass>()
     private var progressDialog : ProgressDialog? = null
-    private val URL = "put in API string here"
+    private val URL = "http://packmyload.com/api/serviceslist"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
@@ -40,6 +40,7 @@ class HomePageActivity : AppCompatActivity() {
         gridViewActions()
         listViewActions()
         progressDialog = ProgressDialog(this)
+        getDataForServices()
     }
 
     private fun viewActions(){
@@ -57,8 +58,6 @@ class HomePageActivity : AppCompatActivity() {
         grid_view.setOnItemClickListener { parent, view, position, id ->
             //depending on the API requirement we might need the title  below
             val title : String = serviceList[position].name!!
-            //sendData()
-            //remember to remove this block of code as it is  just for testing
             val intent = Intent(this, MapsActivity::class.java)
             startActivity(intent)
         }
@@ -195,7 +194,7 @@ class HomePageActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendData(){
+    private fun getDataForServices(){
         progressDialog!!.setMessage("Loading")
         progressDialog!!.show()
         val request = JsonArrayRequest(Request.Method.POST, URL, null,
@@ -216,7 +215,7 @@ class HomePageActivity : AppCompatActivity() {
                     }
 
                 },  Response.ErrorListener{
-            //put in whatever error message you like here.
+            toastMethod("something went wrong...")
         })
         MyApplication.instance?.addToRequestQueue(request)
     }
