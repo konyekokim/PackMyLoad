@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.widget.DrawerLayout
+import android.view.WindowManager
 import android.widget.RelativeLayout
 import com.chokus.konye.packmyload.R
 
@@ -29,8 +30,10 @@ class AboutActivity : AppCompatActivity() {
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).state == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             Snackbar.make(backgroundLayout, "Connection successful", Snackbar.LENGTH_SHORT).show()
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         } else {
             //we are not connected to a network
+            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             Snackbar.make(backgroundLayout, "Oops! No internet connection", Snackbar.LENGTH_INDEFINITE)
                     .setAction("RETRY") {
                         val intent = intent
