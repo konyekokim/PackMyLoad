@@ -23,6 +23,9 @@ import com.chokus.konye.packmyload.R
 import com.chokus.konye.packmyload.application.MyApplication
 import com.chokus.konye.packmyload.servicemodel.DrawerClass
 import com.chokus.konye.packmyload.servicemodel.ServiceClass
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GetTokenResult
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
@@ -242,6 +245,19 @@ class HomePageActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }.setActionTextColor(Color.parseColor("#FC7900")).show()
+        }
+    }
+
+    private fun getUserTokenId(){
+        val mUser = FirebaseAuth.getInstance().currentUser
+        mUser?.getIdToken(true)?.addOnCompleteListener(this){ task: Task<GetTokenResult> ->
+            if(task.isSuccessful){
+                val idToken = task.getResult().token
+                // you can add token to backend
+            }else{
+                //Handle error here..
+                toastMethod("Error getting user token Id")
+            }
         }
     }
 
