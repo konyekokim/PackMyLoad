@@ -107,7 +107,7 @@ class AddCardActivity : AppCompatActivity() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                         finish()
-                    }.setActionTextColor(Color.parseColor("#FC7900")).show()
+                    }.setActionTextColor(resources.getColor(R.color.colorPrimary)).show()
         }
     }
 
