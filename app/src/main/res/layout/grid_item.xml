@@ -8,7 +8,7 @@
         android:layout_height="160dp"
         android:background="@drawable/curved_relative_layout">
 
-        <ImageView
+        <com.android.volley.toolbox.NetworkImageView
             android:layout_width="105dp"
             android:layout_height="105dp"
             android:layout_centerHorizontal="true"

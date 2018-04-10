@@ -13,25 +13,20 @@ import android.widget.BaseAdapter
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
 import com.chokus.konye.packmyload.application.MyApplication
-import com.chokus.konye.packmyload.servicemodel.ServiceClass
+import com.chokus.konye.packmyload.servicemodel.DrawerClass
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
 import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
 
 class HomePageActivity : AppCompatActivity() {
     var gridAdapter : ServiceGridAdapter? = null
     var listAdapter : DrawerListAdapter? = null
-    var serviceList= ArrayList<ServiceClass>()
-    var iconList = ArrayList<ServiceClass>()
+    var serviceList= ArrayList<DrawerClass>()
+    var iconList = ArrayList<DrawerClass>()
     private var progressDialog : ProgressDialog? = null
     private val URL = "put in API string here"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -121,34 +116,34 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun addGridContent(){
         //here perform serviceList.add when you are ready
-        serviceList.add(ServiceClass("Store Delivery", R.drawable.pml_store_delivery))
-        serviceList.add(ServiceClass("Small Move", R.drawable.pml_store_move))
-        serviceList.add(ServiceClass("Packer Pickup", R.drawable.pml_packer_pickup))
-        serviceList.add(ServiceClass("Storage Move", R.drawable.pml_storage_move))
-        serviceList.add(ServiceClass("Donation Pickup", R.drawable.pml_donation_pickup))
-        serviceList.add(ServiceClass("Junk Removal", R.drawable.pml_junk_removal))
-        serviceList.add(ServiceClass("Food Delivery", R.drawable.pml_food_delivery))
-        serviceList.add(ServiceClass("other", R.drawable.pml_other))
+        serviceList.add(DrawerClass("Store Delivery", R.drawable.pml_store_delivery))
+        serviceList.add(DrawerClass("Small Move", R.drawable.pml_store_move))
+        serviceList.add(DrawerClass("Packer Pickup", R.drawable.pml_packer_pickup))
+        serviceList.add(DrawerClass("Storage Move", R.drawable.pml_storage_move))
+        serviceList.add(DrawerClass("Donation Pickup", R.drawable.pml_donation_pickup))
+        serviceList.add(DrawerClass("Junk Removal", R.drawable.pml_junk_removal))
+        serviceList.add(DrawerClass("Food Delivery", R.drawable.pml_food_delivery))
+        serviceList.add(DrawerClass("other", R.drawable.pml_other))
     }
 
     private fun addListContent(){
         //here perform iconList.add when you are ready
-        iconList.add(ServiceClass("Your Packs", R.drawable.refresh_arrow))
-        iconList.add(ServiceClass("Profile", R.drawable.avatar_inside_a_circle))
-        iconList.add(ServiceClass("Payment", R.drawable.credit_card_white))
-        iconList.add(ServiceClass("Free Packing", R.drawable.anniversary_gift_box_outline))
-        iconList.add(ServiceClass("Become a Packer", R.drawable.dollar_in_circular_button))
-        iconList.add(ServiceClass("Review on Google Play", R.drawable.heart))
-        iconList.add(ServiceClass("Have Questions?", R.drawable.question_in_circular_button))
-        iconList.add(ServiceClass("Help & Support", R.drawable.postcard_or_email_envelope_front))
-        iconList.add(ServiceClass("About", R.drawable.information_circular_button_symbol))
+        iconList.add(DrawerClass("Your Packs", R.drawable.refresh_arrow))
+        iconList.add(DrawerClass("Profile", R.drawable.avatar_inside_a_circle))
+        iconList.add(DrawerClass("Payment", R.drawable.credit_card_white))
+        iconList.add(DrawerClass("Free Packing", R.drawable.anniversary_gift_box_outline))
+        iconList.add(DrawerClass("Become a Packer", R.drawable.dollar_in_circular_button))
+        iconList.add(DrawerClass("Review on Google Play", R.drawable.heart))
+        iconList.add(DrawerClass("Have Questions?", R.drawable.question_in_circular_button))
+        iconList.add(DrawerClass("Help & Support", R.drawable.postcard_or_email_envelope_front))
+        iconList.add(DrawerClass("About", R.drawable.information_circular_button_symbol))
     }
 
     class ServiceGridAdapter : BaseAdapter{
-        var serviceList = ArrayList<ServiceClass>()
+        var serviceList = ArrayList<DrawerClass>()
         var context: Context
 
-        constructor(context: Context, serviceList: ArrayList<ServiceClass>): super(){
+        constructor(context: Context, serviceList: ArrayList<DrawerClass>): super(){
             this.context = context
             this.serviceList = serviceList
         }
@@ -171,17 +166,17 @@ class HomePageActivity : AppCompatActivity() {
             val inflator = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val serviceGridView = inflator.inflate(R.layout.grid_item, null)
             serviceGridView.service_name_textView.text = service.name
-            serviceGridView.service_img.setImageResource(service.img!!)
+            serviceGridView.service_img.setImageUrl(service.img.toString(), VolleyS)
 
             return serviceGridView
         }
     }
 
     class DrawerListAdapter : BaseAdapter{
-        var iconList = ArrayList<ServiceClass>()
+        var iconList = ArrayList<DrawerClass>()
         var context: Context
 
-        constructor(context: Context, iconList: ArrayList<ServiceClass>){
+        constructor(context: Context, iconList: ArrayList<DrawerClass>){
             this.iconList = iconList
             this.context = context
         }
@@ -221,10 +216,11 @@ class HomePageActivity : AppCompatActivity() {
                     //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
                     //        "in backend"), Toast.LENGTH_SHORT).show()
                     //process the JSON
-                    val count = 0
+                    var count = 0
                     while(count < response.length()){
                         val jsonObject = response.getJSONObject(count)
                         //add the object for the Serviceclass
+                        count++
                     }
                     /*val intent = Intent(this, MapsActivity::class.java)
                     startActivity(intent)*/
