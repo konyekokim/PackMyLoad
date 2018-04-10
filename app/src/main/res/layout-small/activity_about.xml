@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/about_activity_layout"
     tools:context="com.chokus.konye.packmyload.activity.AboutActivity"
     android:background="@color/colorLightBackground">
 
