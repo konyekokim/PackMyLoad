@@ -6,7 +6,9 @@ import android.support.multidex.MultiDexApplication
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.VolleyLog.TAG
+import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.Volley
+import com.chokus.konye.packmyload.cache.LruBitmapCache
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -30,13 +32,14 @@ class MyApplication : MultiDexApplication(){
     }
 
     val requestQueue : RequestQueue? = null
-
     get(){
         if(field == null){
             return Volley.newRequestQueue(applicationContext)
         }
         return field
     }
+
+    val imageLoader: ImageLoader by lazy { ImageLoader(requestQueue, LruBitmapCache()) }
 
     fun <T> addToRequestQueue(request : Request<T>){
         request.tag = TAG

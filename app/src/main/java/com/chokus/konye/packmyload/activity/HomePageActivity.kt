@@ -17,15 +17,18 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.chokus.konye.packmyload.R
 import com.chokus.konye.packmyload.application.MyApplication
 import com.chokus.konye.packmyload.servicemodel.DrawerClass
+import com.chokus.konye.packmyload.servicemodel.ServiceClass
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
 import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class HomePageActivity : AppCompatActivity() {
     var gridAdapter : ServiceGridAdapter? = null
     var listAdapter : DrawerListAdapter? = null
-    var serviceList= ArrayList<DrawerClass>()
+    var serviceList= ArrayList<ServiceClass>()
     var iconList = ArrayList<DrawerClass>()
     private var progressDialog : ProgressDialog? = null
     private val URL = "put in API string here"
@@ -49,7 +52,6 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     private fun gridViewActions(){
-        addGridContent()
         gridAdapter = ServiceGridAdapter(this, serviceList)
         grid_view.adapter = gridAdapter
         grid_view.setOnItemClickListener { parent, view, position, id ->
@@ -114,18 +116,6 @@ class HomePageActivity : AppCompatActivity() {
         }
     }
 
-    private fun addGridContent(){
-        //here perform serviceList.add when you are ready
-        serviceList.add(DrawerClass("Store Delivery", R.drawable.pml_store_delivery))
-        serviceList.add(DrawerClass("Small Move", R.drawable.pml_store_move))
-        serviceList.add(DrawerClass("Packer Pickup", R.drawable.pml_packer_pickup))
-        serviceList.add(DrawerClass("Storage Move", R.drawable.pml_storage_move))
-        serviceList.add(DrawerClass("Donation Pickup", R.drawable.pml_donation_pickup))
-        serviceList.add(DrawerClass("Junk Removal", R.drawable.pml_junk_removal))
-        serviceList.add(DrawerClass("Food Delivery", R.drawable.pml_food_delivery))
-        serviceList.add(DrawerClass("other", R.drawable.pml_other))
-    }
-
     private fun addListContent(){
         //here perform iconList.add when you are ready
         iconList.add(DrawerClass("Your Packs", R.drawable.refresh_arrow))
@@ -140,10 +130,10 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     class ServiceGridAdapter : BaseAdapter{
-        var serviceList = ArrayList<DrawerClass>()
+        var serviceList = ArrayList<ServiceClass>()
         var context: Context
 
-        constructor(context: Context, serviceList: ArrayList<DrawerClass>): super(){
+        constructor(context: Context, serviceList: ArrayList<ServiceClass>): super(){
             this.context = context
             this.serviceList = serviceList
         }
@@ -166,7 +156,7 @@ class HomePageActivity : AppCompatActivity() {
             val inflator = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val serviceGridView = inflator.inflate(R.layout.grid_item, null)
             serviceGridView.service_name_textView.text = service.name
-            serviceGridView.service_img.setImageUrl(service.img.toString(), VolleyS)
+            serviceGridView.service_img.setImageUrl(service.img.toString(), MyApplication.instance?.imageLoader)
 
             return serviceGridView
         }
@@ -212,18 +202,18 @@ class HomePageActivity : AppCompatActivity() {
                 Response.Listener<JSONArray>{ response ->
                     //use this to get hte response from the backend
                     progressDialog!!.dismiss()
-                    //val obj = JSONObject(response)
-                    //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
-                    //        "in backend"), Toast.LENGTH_SHORT).show()
-                    //process the JSON
                     var count = 0
                     while(count < response.length()){
-                        val jsonObject = response.getJSONObject(count)
-                        //add the object for the Serviceclass
-                        count++
+                        try{
+                            val jsonObject = response.getJSONObject(count)
+                            val serviceClass = ServiceClass(jsonObject.getString("title"), jsonObject.getString("image"))
+                            serviceList.add(serviceClass)
+                            count++
+                        }catch (e:JSONException){
+                            e.printStackTrace()
+                        }
+
                     }
-                    /*val intent = Intent(this, MapsActivity::class.java)
-                    startActivity(intent)*/
 
                 },  Response.ErrorListener{
             //put in whatever error message you like here.
