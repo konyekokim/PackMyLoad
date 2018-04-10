@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
 import com.chokus.konye.packmyload.application.MyApplication
@@ -21,6 +22,7 @@ import com.chokus.konye.packmyload.servicemodel.ServiceClass
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
+import org.json.JSONException
 import org.json.JSONObject
 
 class HomePageActivity : AppCompatActivity() {
@@ -209,31 +211,28 @@ class HomePageActivity : AppCompatActivity() {
     private fun sendData(){
         progressDialog!!.setMessage("Loading")
         progressDialog!!.show()
-        val stringRequest = object : StringRequest(Request.Method.POST, URL,
-                Response.Listener<String>{ response ->
+        val request = JsonObjectRequest(Request.Method.POST, URL, null,
+                Response.Listener<JSONObject>{ response ->
                     //use this to get hte response from the backend
                     progressDialog!!.dismiss()
-                    val obj = JSONObject(response)
+                    //val obj = JSONObject(response)
                     //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
                     //        "in backend"), Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MapsActivity::class.java)
-                    startActivity(intent)
+                    //process the JSON
+                    try{
+                        //get the JSON  array
 
-                }, object : Response.ErrorListener{
-            override fun onErrorResponse(error: VolleyError?) {
-                progressDialog!!.dismiss()
-                toastMethod(error?.message)
-            }
+                    }catch (e : JSONException){
+                        e.printStackTrace()
+                    }
+
+                    /*val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)*/
+
+                },  Response.ErrorListener{
+            //put in whatever error message you like here.
         })
-        {
-            override fun getParams(): MutableMap<String, String> {
-                val params = HashMap<String, String>()
-                //need better API to add the information from this activity to the database e.g. shown  below
-                //params.put("name", firstName_editText.text.toString())
-                return params
-            }
-        }
-        MyApplication.instance?.addToRequestQueue(stringRequest)
+        MyApplication.instance?.addToRequestQueue(request)
     }
 
     private fun toastMethod(message : String?){
