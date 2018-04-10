@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/pickup_date_activity_layout"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
     tools:context="com.chokus.konye.packmyload.activity.PickupDateActivity">

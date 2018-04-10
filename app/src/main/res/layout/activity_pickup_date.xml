@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/pickup_date_activity_layout"
     android:background="@color/colorPrimary"
     tools:context="com.chokus.konye.packmyload.activity.PickupDateActivity">
 
