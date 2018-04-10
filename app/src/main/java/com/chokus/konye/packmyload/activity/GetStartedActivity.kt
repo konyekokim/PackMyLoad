@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_get_started.*
 class GetStartedActivity : AppCompatActivity() {
     private var callbackManager : CallbackManager? = null
     private var firebaseAuth : FirebaseAuth? = null
+    private var ifConnected : Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_get_started)
@@ -107,7 +108,7 @@ class GetStartedActivity : AppCompatActivity() {
         if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).state == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).state == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
-            Snackbar.make(backgroundLayout, "Connection successful", Snackbar.LENGTH_SHORT).show()
+            //Snackbar.make(backgroundLayout, "Connection successful", Snackbar.LENGTH_SHORT).show()
         } else {
             //we are not connected to a network
             Snackbar.make(backgroundLayout, "Oops! No internet connection", Snackbar.LENGTH_INDEFINITE)
