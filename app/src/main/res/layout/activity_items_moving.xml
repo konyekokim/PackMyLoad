@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:id="@+id/items_moving_activity_layout"
     tools:context="com.chokus.konye.packmyload.activity.ItemsMovingActivity">
 
     <RelativeLayout
