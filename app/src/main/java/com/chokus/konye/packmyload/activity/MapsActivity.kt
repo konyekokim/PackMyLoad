@@ -4,16 +4,21 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.app.Service
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.*
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.util.Log
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -73,6 +78,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         mapFragment.getMapAsync(this)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.map_activity_name)
+        checkNetworkConnection()
         viewActions()
         prepareLocationManager()
         progressDialog = ProgressDialog(this)
@@ -428,6 +434,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
             }
         }
         MyApplication.instance?.addToRequestQueue(stringRequest)
+    }
+
+    private fun checkNetworkConnection() {
+        val backgroundLayout = findViewById(R.id.maps_activity_layout) as RelativeLayout
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).state == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).state == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            Snackbar.make(backgroundLayout, "Connection successful", Snackbar.LENGTH_SHORT).show()
+        } else {
+            //we are not connected to a network
+            Snackbar.make(backgroundLayout, "Oops! No internet connection", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("RETRY") {
+                        val intent = intent
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        startActivity(intent)
+                        finish()
+                    }.setActionTextColor(resources.getColor(R.color.colorPrimary)).show()
+        }
     }
 
     override fun onDestroy() {
