@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
@@ -22,6 +23,7 @@ import com.chokus.konye.packmyload.servicemodel.ServiceClass
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -211,21 +213,19 @@ class HomePageActivity : AppCompatActivity() {
     private fun sendData(){
         progressDialog!!.setMessage("Loading")
         progressDialog!!.show()
-        val request = JsonObjectRequest(Request.Method.POST, URL, null,
-                Response.Listener<JSONObject>{ response ->
+        val request = JsonArrayRequest(Request.Method.POST, URL, null,
+                Response.Listener<JSONArray>{ response ->
                     //use this to get hte response from the backend
                     progressDialog!!.dismiss()
                     //val obj = JSONObject(response)
                     //Toast.makeText(applicationContext, obj.getString("what ever the string return " +
                     //        "in backend"), Toast.LENGTH_SHORT).show()
                     //process the JSON
-                    try{
-                        //get the JSON  array
-
-                    }catch (e : JSONException){
-                        e.printStackTrace()
+                    val count = 0
+                    while(count < response.length()){
+                        val jsonObject = response.getJSONObject(count)
+                        //add the object for the Serviceclass
                     }
-
                     /*val intent = Intent(this, MapsActivity::class.java)
                     startActivity(intent)*/
 
