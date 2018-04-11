@@ -92,7 +92,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun checkNetworkConnection() {
-        val backgroundLayout = findViewById(R.id.about_activity_layout) as RelativeLayout
+        val backgroundLayout = findViewById<RelativeLayout>(R.id.about_activity_layout)
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).state == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).state == NetworkInfo.State.CONNECTED) {
