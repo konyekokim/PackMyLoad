@@ -3,6 +3,7 @@ package com.chokus.konye.packmyload.activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
@@ -21,6 +22,9 @@ class AboutActivity : AppCompatActivity() {
     private val instagramProfileWebLink = "http://instagram.com/packmyload"
     private val instaPackageName = "com.instagram.android"
     private val twitter_user_name = "packmyload"
+    private val FACEBOOK_URL = "https://www.facebook.com/packmyload"
+    private val FACEBOOK_PAGE_ID = "packmyload"
+    private val facebookPackageName = "com.facebook.katana"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +42,7 @@ class AboutActivity : AppCompatActivity() {
             linkToTwitter()
         }
         facebook_relativeLayout.setOnClickListener {
-
+            linkToFacebook()
         }
     }
 
@@ -58,6 +62,32 @@ class AboutActivity : AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("twitter:user?screen_name=$twitter_user_name")))
         }catch (e : Exception){
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https:twitter.com/#!/$twitter_user_name")))
+        }
+    }
+
+    private fun linkToFacebook(){
+        val facebookIntent = Intent(Intent.ACTION_VIEW)
+        val facebookUrl = getFacebookPageURL(this)
+        facebookIntent.data = Uri.parse(facebookUrl)
+        startActivity(facebookIntent)
+    }
+
+    private fun getFacebookPageURL(context : Context) : String{
+        val packageManager = context.packageManager
+        try{
+            val versionCode = packageManager.getPackageInfo(facebookPackageName , 0).versionCode
+            val activated : Boolean = packageManager.getApplicationInfo( facebookPackageName , 0).enabled
+            if(activated){
+                if(versionCode >= 3002850){//newer versions of the facebook app
+                    return "fb://facewebmodal/f?href=$FACEBOOK_URL"
+                }else{
+                    return "fb://page/$FACEBOOK_PAGE_ID"
+                }
+            }else{
+                return FACEBOOK_URL //normal web url
+            }
+        }catch (e : PackageManager.NameNotFoundException){
+            return FACEBOOK_URL
         }
     }
 
