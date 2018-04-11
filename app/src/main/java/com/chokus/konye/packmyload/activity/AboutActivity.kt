@@ -55,9 +55,9 @@ class AboutActivity : AppCompatActivity() {
 
     private fun linkToTwitter(){
         try{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("twitter:user?screen_name=" + twitter_user_name)))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("twitter:user?screen_name=$twitter_user_name")))
         }catch (e : Exception){
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https:twitter.com/#!/" + twitter_user_name)))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https:twitter.com/#!/$twitter_user_name")))
         }
     }
 
