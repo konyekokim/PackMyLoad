@@ -1,10 +1,12 @@
 package com.chokus.konye.packmyload.activity
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -12,15 +14,40 @@ import android.support.v4.widget.DrawerLayout
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import com.chokus.konye.packmyload.R
+import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : AppCompatActivity() {
-
+    private val instagramProfileLink = "http://instagram.com/_u/xxx"
+    private val instaPackageName = "com.instagram.android"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.about_title)
         checkNetworkConnection()
+    }
+
+    private fun viewActions(){
+        instagram_relativeLayout.setOnClickListener {
+            linkToInstagram()
+        }
+        twitter_relativeLayout.setOnClickListener {
+
+        }
+        facebook_relativeLayout.setOnClickListener {
+
+        }
+    }
+
+    private fun linkToInstagram(){
+        val uri = Uri.parse(instagramProfileLink)
+        val linkToIgIntent = Intent(Intent.ACTION_VIEW, uri)
+        linkToIgIntent.`package` = instaPackageName
+        try{
+            startActivity(linkToIgIntent)
+        }catch (e : ActivityNotFoundException){
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(instagramProfileLink)))
+        }
     }
 
     private fun checkNetworkConnection() {
