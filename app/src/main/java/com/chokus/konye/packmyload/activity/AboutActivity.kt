@@ -17,7 +17,7 @@ import com.chokus.konye.packmyload.R
 import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : AppCompatActivity() {
-    private val instagramProfileLink = "http://instagram.com/_u/xxx"
+    private val instagramProfileLink = "http://instagram.com/_u/packmyload"
     private val instaPackageName = "com.instagram.android"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
