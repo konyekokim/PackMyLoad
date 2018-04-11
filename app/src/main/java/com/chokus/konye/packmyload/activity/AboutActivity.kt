@@ -18,7 +18,10 @@ import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : AppCompatActivity() {
     private val instagramProfileLink = "http://instagram.com/_u/packmyload"
+    private val instagramProfileWebLink = "http://instagram.com/packmyload"
     private val instaPackageName = "com.instagram.android"
+    private val twitter_user_name = "packmyload"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
@@ -32,7 +35,7 @@ class AboutActivity : AppCompatActivity() {
             linkToInstagram()
         }
         twitter_relativeLayout.setOnClickListener {
-
+            linkToTwitter()
         }
         facebook_relativeLayout.setOnClickListener {
 
@@ -46,7 +49,15 @@ class AboutActivity : AppCompatActivity() {
         try{
             startActivity(linkToIgIntent)
         }catch (e : ActivityNotFoundException){
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(instagramProfileLink)))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(instagramProfileWebLink)))
+        }
+    }
+
+    private fun linkToTwitter(){
+        try{
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("twitter:user?screen_name=" + twitter_user_name)))
+        }catch (e : Exception){
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https:twitter.com/#!/" + twitter_user_name)))
         }
     }
 
