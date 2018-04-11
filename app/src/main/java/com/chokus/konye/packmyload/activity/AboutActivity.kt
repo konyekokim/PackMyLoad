@@ -32,6 +32,7 @@ class AboutActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.about_title)
         checkNetworkConnection()
+        viewActions()
     }
 
     private fun viewActions(){
