@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -109,6 +110,7 @@ class GetStartedActivity : AppCompatActivity() {
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).state == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             //Snackbar.make(backgroundLayout, "Connection successful", Snackbar.LENGTH_SHORT).show()
+            network_layout.visibility = View.GONE
         } else {
             //we are not connected to a network
             Snackbar.make(backgroundLayout, "Oops! No internet connection", Snackbar.LENGTH_INDEFINITE)
@@ -118,6 +120,7 @@ class GetStartedActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }.setActionTextColor(resources.getColor(R.color.colorPrimary)).show()
+            network_layout.visibility = View.VISIBLE
         }
     }
 }
