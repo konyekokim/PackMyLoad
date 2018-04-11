@@ -52,7 +52,6 @@ class ItemsMovingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_items_moving)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.items_moving_activity)
-        checkNetworkConnection()
         viewActions()
         progressDialog = ProgressDialog(this)
     }
@@ -243,25 +242,6 @@ class ItemsMovingActivity : AppCompatActivity() {
             }
         }
         MyApplication.instance?.addToRequestQueue(stringRequest)
-    }
-
-    private fun checkNetworkConnection() {
-        val backgroundLayout = findViewById(R.id.items_moving_activity_layout) as RelativeLayout
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).state == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).state == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            //Snackbar.make(backgroundLayout, "Connection successful", Snackbar.LENGTH_SHORT).show()
-        } else {
-            //we are not connected to a network
-            Snackbar.make(backgroundLayout, "Oops! No internet connection", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("RETRY") {
-                        val intent = intent
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                        startActivity(intent)
-                        finish()
-                    }.setActionTextColor(resources.getColor(R.color.colorPrimary)).show()
-        }
     }
 
     private fun toastMethod(message : String?){
