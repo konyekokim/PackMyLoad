@@ -77,4 +77,7 @@
     <string name="google_places_api_key">AIzaSyAbH_VtMcV-zkNfsjpoIA2uPqR2pkJEIaE</string>
     <string name="Saving_data_dialog_text">Saving data please wait...</string>
 
+    <string name="default_history_pml_type_text">Food Delivery</string>
+    <string name="default_pml_date">20th Sept, 1996</string>
+
 </resources>
