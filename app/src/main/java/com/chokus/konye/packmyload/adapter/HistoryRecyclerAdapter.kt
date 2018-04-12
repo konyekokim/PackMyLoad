@@ -15,7 +15,7 @@ import com.chokus.konye.packmyload.models.HistoryClass
  */
 class HistoryRecyclerAdapter(var historyList : ArrayList<HistoryClass>, context : Context) : RecyclerView.Adapter<HistoryRecyclerAdapter.MyViewHolder>(){
     var mContext = context
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.history_list_item, parent, false)
         return MyViewHolder(v)
     }
