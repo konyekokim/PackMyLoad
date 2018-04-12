@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
@@ -21,8 +20,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.chokus.konye.packmyload.R
 import com.chokus.konye.packmyload.application.MyApplication
-import com.chokus.konye.packmyload.servicemodel.DrawerClass
-import com.chokus.konye.packmyload.servicemodel.ServiceClass
+import com.chokus.konye.packmyload.models.DrawerClass
+import com.chokus.konye.packmyload.models.ServiceClass
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GetTokenResult
@@ -31,7 +30,6 @@ import kotlinx.android.synthetic.main.drawer_list_item.view.*
 import kotlinx.android.synthetic.main.grid_item.view.*
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 class HomePageActivity : AppCompatActivity() {
     var gridAdapter : ServiceGridAdapter? = null
