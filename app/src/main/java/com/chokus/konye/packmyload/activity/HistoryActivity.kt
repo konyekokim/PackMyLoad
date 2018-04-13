@@ -34,7 +34,10 @@ class HistoryActivity : AppCompatActivity() {
     private var historyRecyclerAdapter : HistoryRecyclerAdapter? = null
     private var historyList = ArrayList<HistoryClass>()
     private var progressDialog : ProgressDialog? = null
-    private val URL = "put your API URL here"
+    private var userID : String? = null
+    private var userEmail : String? = null
+    private var loginToken : String? = null
+    private val URL = "http://packmyload.com/api/movementhistory"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
@@ -43,6 +46,8 @@ class HistoryActivity : AppCompatActivity() {
         checkNetworkConnection()
         linearLayoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         viewActions()
+        //remember to get intents for the userid, useremail and logintoken used in sendData function
+        //sendData()
     }
 
     private fun viewActions(){
@@ -59,9 +64,8 @@ class HistoryActivity : AppCompatActivity() {
         val stringRequest = object : StringRequest(Request.Method.POST, URL,
                 Response.Listener<String>{ response ->
                     progressDialog!!.dismiss()
-                    //here we are trying to get JSON array
-                    //process the JSON
-
+                    //here we will put in method to get JSON Array
+                    getDataForHistoryList()
 
                 }, object : Response.ErrorListener{
             override fun onErrorResponse(error: VolleyError?) {
@@ -74,10 +78,39 @@ class HistoryActivity : AppCompatActivity() {
                 val params = HashMap<String, String>()
                 //need better API to add the information from this activity to the database e.g. shown  below
                 //params.put("name", firstName_editText.text.toString())
+                params.put("userid", userID!!)
+                params.put("useremail", userEmail!!)
+                params.put("logintoken", loginToken!!)
                 return params
             }
         }
         MyApplication.instance?.addToRequestQueue(stringRequest)
+    }
+
+    private fun getDataForHistoryList(){
+        progressDialog!!.setMessage("Loading")
+        progressDialog!!.show()
+        val request = JsonArrayRequest(Request.Method.POST, URL, null,
+                Response.Listener<JSONArray>{ response ->
+                    //use this to get hte response from the backend
+                    progressDialog!!.dismiss()
+                    var count = 0
+                    while(count < response.length()){
+                        try{
+                            val jsonObject = response.getJSONObject(count)
+                            val historyClass = HistoryClass(jsonObject.getString("type"), jsonObject.getString("posteddate"))
+                            historyList.add(historyClass)
+                            count++
+                        }catch (e:JSONException){
+                            e.printStackTrace()
+                        }
+
+                    }
+
+                },  Response.ErrorListener{
+            toastMethod("something went wrong...")
+        })
+        MyApplication.instance?.addToRequestQueue(request)
     }
 
     private fun checkNetworkConnection() {
