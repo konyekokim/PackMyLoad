@@ -13,7 +13,8 @@
         android:text="@string/no_history"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/no_pml_textView"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -21,7 +22,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:scrollbars="vertical"
-        android:id="@+id/history_recyclerView"/>
+        android:id="@+id/history_recyclerView"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="fill_parent"

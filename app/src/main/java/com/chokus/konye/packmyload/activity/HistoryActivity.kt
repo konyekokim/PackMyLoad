@@ -55,7 +55,7 @@ class HistoryActivity : AppCompatActivity() {
         historyRecyclerAdapter = HistoryRecyclerAdapter(historyList, this)
         history_recyclerView.adapter = historyRecyclerAdapter
         historyRecyclerAdapter!!.notifyDataSetChanged()
-
+        showRecyclerView()
     }
 
     private fun sendData(){
@@ -131,6 +131,16 @@ class HistoryActivity : AppCompatActivity() {
                         finish()
                     }.setActionTextColor(resources.getColor(R.color.colorPrimary)).show()
             network_layout.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showRecyclerView(){
+        if(historyList.isEmpty()){
+            history_recyclerView.visibility = View.GONE
+            no_pml_textView.visibility = View.VISIBLE
+        }else{
+            history_recyclerView.visibility = View.VISIBLE
+            no_pml_textView.visibility = View.GONE
         }
     }
 
