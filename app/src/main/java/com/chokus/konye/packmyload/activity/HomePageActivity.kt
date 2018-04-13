@@ -34,7 +34,7 @@ import org.json.JSONException
 class HomePageActivity : AppCompatActivity() {
     var gridAdapter : ServiceGridAdapter? = null
     var listAdapter : DrawerListAdapter? = null
-    var serviceList= ArrayList<ServiceClass>()
+    var serviceList = ArrayList<ServiceClass>()
     var iconList = ArrayList<DrawerClass>()
     private var progressDialog : ProgressDialog? = null
     private val URL = "http://packmyload.com/api/serviceslist"

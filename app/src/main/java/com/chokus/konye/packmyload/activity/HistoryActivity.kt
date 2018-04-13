@@ -1,5 +1,6 @@
 package com.chokus.konye.packmyload.activity
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -8,19 +9,75 @@ import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.StringRequest
 import com.chokus.konye.packmyload.R
+import com.chokus.konye.packmyload.adapter.HistoryRecyclerAdapter
+import com.chokus.konye.packmyload.application.MyApplication
+import com.chokus.konye.packmyload.models.HistoryClass
+import com.chokus.konye.packmyload.models.ServiceClass
 import kotlinx.android.synthetic.main.activity_history.*
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class HistoryActivity : AppCompatActivity() {
-
+    private lateinit var linearLayoutManager : LinearLayoutManager
+    private var historyRecyclerAdapter : HistoryRecyclerAdapter? = null
+    private var historyList = ArrayList<HistoryClass>()
+    private var progressDialog : ProgressDialog? = null
+    private val URL = "put your API URL here"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.history_title)
         checkNetworkConnection()
+        linearLayoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        viewActions()
+    }
+
+    private fun viewActions(){
+        history_recyclerView.layoutManager = linearLayoutManager
+        historyRecyclerAdapter = HistoryRecyclerAdapter(historyList, this)
+        history_recyclerView.adapter = historyRecyclerAdapter
+        historyRecyclerAdapter!!.notifyDataSetChanged()
+
+    }
+
+    private fun sendData(){
+        progressDialog!!.setMessage("Loading")
+        progressDialog!!.show()
+        val stringRequest = object : StringRequest(Request.Method.POST, URL,
+                Response.Listener<String>{ response ->
+                    progressDialog!!.dismiss()
+                    //here we are trying to get JSON array
+                    //process the JSON
+
+
+                }, object : Response.ErrorListener{
+            override fun onErrorResponse(error: VolleyError?) {
+                progressDialog!!.dismiss()
+                toastMethod(error?.message)
+            }
+        })
+        {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                //need better API to add the information from this activity to the database e.g. shown  below
+                //params.put("name", firstName_editText.text.toString())
+                return params
+            }
+        }
+        MyApplication.instance?.addToRequestQueue(stringRequest)
     }
 
     private fun checkNetworkConnection() {
@@ -42,5 +99,9 @@ class HistoryActivity : AppCompatActivity() {
                     }.setActionTextColor(resources.getColor(R.color.colorPrimary)).show()
             network_layout.visibility = View.VISIBLE
         }
+    }
+
+    private fun toastMethod(message : String?){
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 }
