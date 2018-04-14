@@ -3,7 +3,6 @@ package com.chokus.konye.packmyload.activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
@@ -23,11 +22,9 @@ import com.chokus.konye.packmyload.R
 import com.chokus.konye.packmyload.adapter.HistoryRecyclerAdapter
 import com.chokus.konye.packmyload.application.MyApplication
 import com.chokus.konye.packmyload.models.HistoryClass
-import com.chokus.konye.packmyload.models.ServiceClass
 import kotlinx.android.synthetic.main.activity_history.*
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager : LinearLayoutManager
