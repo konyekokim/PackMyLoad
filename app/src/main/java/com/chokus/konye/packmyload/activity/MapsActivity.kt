@@ -143,20 +143,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener, 
 
     private fun viewActions(){
         continue_layout.setOnClickListener {
-            startLatLng = getCoordinatesFromAddress(pickup_location_textView.text.toString())
-            endLatLng = getCoordinatesFromAddress(dest_location_textView.text.toString())
-            if(startLatLng != null && endLatLng != null){
-                getStartAndEndLocation(startLatLng!!, endLatLng!!)
-                //checkViews()
-            }
-            if(startLocation != null && endLocation != null){
-                Toast.makeText(this,
-                        "" + distanceBetweenLocations(startLocation!!, endLocation!!).toString() + " km",
-                        Toast.LENGTH_LONG).show()
-            }
-            //remember to remove this block of code  as it is just for testing
-            val intent = Intent(applicationContext, SelectYourSizeActivity::class.java)
-            startActivity(intent)
+            calculateDistanceBetweenLocations()
         }
         pickup_layout.setOnClickListener {
             pickupLocation = true
@@ -411,6 +398,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener, 
     private fun distanceBetweenLocations(startLoc : Location, endLoc : Location) : Float{
       val distance : Float = endLoc.distanceTo(startLoc)/1000
         return distance
+    }
+
+    private fun calculateDistanceBetweenLocations(){
+        if(pickup_location_textView.text != "Enter Location" && pickup_location_textView.text != ""){
+            startLatLng = getCoordinatesFromAddress(pickup_location_textView.text.toString())
+        }
+        if(dest_location_textView.text != "Enter Destination" && dest_location_textView.text != ""){
+            endLatLng = getCoordinatesFromAddress(dest_location_textView.text.toString())
+        }
+        if(startLatLng != null && endLatLng != null){
+            getStartAndEndLocation(startLatLng!!, endLatLng!!)
+            //checkViews()
+        }
+        if(startLocation != null && endLocation != null){
+            Toast.makeText(this,
+                    "" + distanceBetweenLocations(startLocation!!, endLocation!!).toString() + " km",
+                    Toast.LENGTH_LONG).show()
+        }
+        //remember to remove this block of code  as it is just for testing
+        val intent = Intent(applicationContext, SelectYourSizeActivity::class.java)
+        startActivity(intent)
     }
 
     private fun checkLocations(){
