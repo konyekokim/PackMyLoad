@@ -24,6 +24,8 @@ import com.akexorcist.googledirection.DirectionCallback
 import com.akexorcist.googledirection.GoogleDirection
 import com.akexorcist.googledirection.constant.TransportMode
 import com.akexorcist.googledirection.model.Direction
+import com.akexorcist.googledirection.model.Route
+import com.akexorcist.googledirection.util.DirectionConverter
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -40,6 +42,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
 import org.json.JSONObject
@@ -410,6 +413,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener, 
         return distance
     }
 
+    private fun checkLocations(){
+        if(startLatLng != null && endLatLng != null){
+            requestDirection()
+        }
+    }
+
     private fun requestDirection(){
         toastMethod("Loading Direction...")
         GoogleDirection.withServerKey(resources.getResourceName(R.string.google_maps_key))
@@ -420,11 +429,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener, 
     }
 
     override fun onDirectionSuccess(direction: Direction?, rawBody: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(direction!!.isOK){
+            val route = direction.routeList.get(0)
+            mMap.addMarker(MarkerOptions().position(startLatLng!!))
+            mMap.addMarker(MarkerOptions().position(endLatLng!!))
+
+            val directionPositionList : ArrayList<LatLng> = route.legList.get(0).directionPoint
+            mMap.addPolyline(DirectionConverter.createPolyline(this, directionPositionList,5, resources.getColor(R.color.colorPrimaryDark)))
+            setCameraWithCoordinationBounds(route)
+        }
     }
 
     override fun onDirectionFailure(t: Throwable?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        toastMethod("Error in getting direction between locations")
+    }
+
+    private fun setCameraWithCoordinationBounds(route : Route){
+        val southwest : LatLng = route.bound.southwestCoordination.coordination
+        val northeast : LatLng = route.bound.northeastCoordination.coordination
+        val bounds = LatLngBounds(southwest, northeast)
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
     }
 
     private fun sendData(){
@@ -464,6 +488,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener, 
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).state == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             //Snackbar.make(backgroundLayout, "Connection successful", Snackbar.LENGTH_SHORT).show()
+            checkLocations()
         } else {
             //we are not connected to a network
             Snackbar.make(backgroundLayout, "Oops! No internet connection", Snackbar.LENGTH_INDEFINITE)
