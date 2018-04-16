@@ -406,6 +406,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
         return distance
     }
 
+    private fun requestDirection(){
+
+    }
+
     private fun sendData(){
         progressDialog!!.setMessage("Loading...")
         progressDialog!!.show()
