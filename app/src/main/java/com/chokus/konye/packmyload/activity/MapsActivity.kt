@@ -20,6 +20,10 @@ import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.widget.RelativeLayout
 import android.widget.Toast
+import com.akexorcist.googledirection.DirectionCallback
+import com.akexorcist.googledirection.GoogleDirection
+import com.akexorcist.googledirection.constant.TransportMode
+import com.akexorcist.googledirection.model.Direction
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -41,7 +45,7 @@ import kotlinx.android.synthetic.main.activity_maps.*
 import org.json.JSONObject
 import java.io.IOException
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener, DirectionCallback {
 
     private lateinit var mMap: GoogleMap
     private var  location : Location? = null
@@ -407,7 +411,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener{
     }
 
     private fun requestDirection(){
+        toastMethod("Loading Direction...")
+        GoogleDirection.withServerKey(resources.getResourceName(R.string.google_maps_key))
+                .from(startLatLng)
+                .to(endLatLng)
+                .transportMode(TransportMode.DRIVING)
+                .execute(this)
+    }
 
+    override fun onDirectionSuccess(direction: Direction?, rawBody: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDirectionFailure(t: Throwable?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun sendData(){
